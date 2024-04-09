@@ -1,3 +1,5 @@
+# Bruno Vázquez Espinoza - A00838521
+# Cyrce Danae Salinas Rojas - A01666121
 # 1. [3 pts] Crear un vector x con los datos 10, 7, 18, -11, 6, -34, 29
 ```{r}
 x <- c(10, 7, 18, -11, 6, -34, 29)
