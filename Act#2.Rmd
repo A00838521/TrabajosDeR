@@ -1,0 +1,54 @@
+# Bruno Vázquez Espinoza - A00838521
+# Cyrce Danae Salinas Rojas - A01666121
+
+# 6. [10 pts] Para representar una molécula de ADN de doble hebra basta con escribir la secuencia de una de sus hebras. Consideremos, por ejemplo, la secuencia TGCGATAC. Como no se indica lo contrario, se asume que la secuencia está escrita en sentido 5'→3' y, por lo tanto, se trata de la hebra directa (forward strand): Hebra directa: 5'-TGCGATAC-3' Análogamente, si decido escribir esta misma secuencia empezando por el extremo 3’ se obtiene la hebra inversa (reverse strand): Hebra inversa: 3'-CATAGCGT-5' Escribe una función que reciba una hebra directa y regrese la hebra inversa. Utiliza cualquiera de las 3 variables generadas anteriormente. Se deberán imprimir ambas hebras; no hay necesidad de especificar en el ejercicio los extremos 5’ y 3’, pero sí es necesario especificar cuál es la hebra directa y cuál la hebra inversa
+```{r}
+reverse_strand <- function(direct_strand) {
+    reverse_strand <- strsplit(direct_strand, "")[[1]]
+    reverse_strand <- paste(reverse_strand[length(reverse_strand):1], collapse = "")
+    return(reverse_strand)
+}
+
+direct_strand <- "TGCGATAC"
+reverse_strand <- reverse_strand(direct_strand)
+
+print(paste("Direct strand:", direct_strand))
+print(paste("Reverse strand:", reverse_strand))
+```
+
+# 7. [10 pts] Normalmente se representa la molécula escribiendo primero la hebra directa y debajo la hebra complementaria (complementary strand). La hebra complementaria se escribe en sentido 3'→5' para que las bases de ambas hebras queden emparejadas: Hebra directa: 5'-TGCGATAC-3' Hebra complementaria: 3'-ACGCTATG-5'. Escribe una función qué reciba una hebra directa y obtenga la hebra complementaria. Utiliza cualquiera de las 3 variables generadas anteriormente. Se deberán imprimir ambas hebras; no hay necesidad de especificar en el ejercicio los extremos 5’ y 3’, pero sí es necesario especificar cuál es la hebra directa y cuál la hebra complementaria.
+```{r}
+complementary_strand <- function(direct_strand) {
+    complementary_strand <- gsub("T", "a", direct_strand)
+    complementary_strand <- gsub("G", "c", complementary_strand)
+    complementary_strand <- gsub("C", "g", complementary_strand)
+    complementary_strand <- gsub("A", "t", complementary_strand)
+    return(complementary_strand)
+}
+
+direct_strand <- "TGCGATAC"
+complementary_strand <- complementary_strand(direct_strand)
+complementary_strand <- toupper(complementary_strand)
+
+print(paste("Direct strand:", direct_strand))
+print(paste("Complementary strand:", complementary_strand))
+```
+# 8. [10 pts] Si escribimos la secuencia de la hebra complementaria en sentido inverso (5'→3') se obtiene la complementaria inversa (reverse-complement): Hebra directa: 5'-TGCGATAC-3' Hebra complementaria inversa: 5'-GTATCGCA-3' Escribe la función en R para obtener la hebra complementaria inversa, desde una hebra directa. Utiliza cualquiera de las 3 variables generadas anteriormente. Se deberán imprimir ambas hebras; no hay necesidad de especificar en el ejercicio los extremos 5’ y 3’, pero sí es necesario especificar cuál es la hebra directa y cuál la hebra complementaria inversa.
+```{r}
+reverse_complement_strand <- function(direct_strand) {
+    reverse_strand <- strsplit(direct_strand, "")[[1]]
+    reverse_strand <- paste(reverse_strand[length(reverse_strand):1], collapse = "")
+    complementary_strand <- gsub("T", "a", reverse_strand)
+    complementary_strand <- gsub("G", "c", complementary_strand)
+    complementary_strand <- gsub("C", "g", complementary_strand)
+    complementary_strand <- gsub("A", "t", complementary_strand)
+    reverse_complement_strand <- toupper(complementary_strand)
+    return(reverse_complement_strand)
+}
+
+direct_strand <- "TGCGATAC"
+reverse_complement_strand <- reverse_complement_strand(direct_strand)
+
+print(paste("Direct strand:", direct_strand))
+print(paste("Reverse complement strand:", reverse_complement_strand))
+```
