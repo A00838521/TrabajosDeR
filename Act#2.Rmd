@@ -1,3 +1,9 @@
+---
+title: "Act#2"
+author: Cyrce
+date: April 16, 2023
+output: pdf_document
+---
 # Bruno Vázquez Espinoza - A00838521
 # Cyrce Danae Salinas Rojas - A01666121
 #1. Escribe una función que genere una secuencia aleatoria de DNA de tamaño “n”. Probar con n = 50 y guardarla en una variable.
@@ -7,7 +13,9 @@ sequenceDNA <-function(size){
   sample(x, size, replace = TRUE )
 }
 DNA <-paste0(sequenceDNA(90))
-DNA
+DNA_89<-paste0(sequenceDNA(89))
+c("DNA:",  DNA, "DNA of 89:" , DNA_89)
+
 ```
 
 # 2.Codifica una función que calcule el tamaño de una secuencia de DNA. Probar la función con la variable del ejercicio 1
@@ -55,10 +63,10 @@ DNAtoRNA<-function(sequence){
   return(RNA)
 }
 
-RNA <- DNAtoRNA(a)
+RNA <- DNAtoRNA(DNA)
 RNA
 ```
-# Crea una función que traduzca una secuencia de RNA a una secuencia de proteínas usando la siguiente tabla. Prueba el ejercicio con dos variables: la variable del ejercicio 4 y una nueva variable del ejercicio 1 con n = 89 para probar una salida que no sea múltiplo de 3. 6. [10 pts] Para representar una molécula de ADN de doble hebra basta con escribir la secuencia de una de sus hebras. Consideremos, por ejemplo, la secuencia TGCGATAC. Como no se indica lo contrario, se asume que la secuencia está escrita en sentido 5'→3' y, por lo tanto, se trata de la hebra directa (forward strand):
+# 5. Crea una función que traduzca una secuencia de RNA a una secuencia de proteínas usando la siguiente tabla. Prueba el ejercicio con dos variables: la variable del ejercicio 4 y una nueva variable del ejercicio 1 con n = 89 para probar una salida que no sea múltiplo de 3. 6. [10 pts] Para representar una molécula de ADN de doble hebra basta con escribir la secuencia de una de sus hebras. Consideremos, por ejemplo, la secuencia TGCGATAC. Como no se indica lo contrario, se asume que la secuencia está escrita en sentido 5'→3' y, por lo tanto, se trata de la hebra directa (forward strand):
 ```{r}
 
 translateRNAtoProtein <- function(sequence) {
@@ -95,7 +103,8 @@ translateRNAtoProtein <- function(sequence) {
 }
 
 Prot<-translateRNAtoProtein(RNA)
-Prot
+Prot89<-translateRNAtoProtein(DNA_89)
+c("caso con RNA: ", Prot, "caso con DNA de 89:", Prot89)
 ```
 # 6. [10 pts] Para representar una molécula de ADN de doble hebra basta con escribir la secuencia de una de sus hebras. Consideremos, por ejemplo, la secuencia TGCGATAC. Como no se indica lo contrario, se asume que la secuencia está escrita en sentido 5'→3' y, por lo tanto, se trata de la hebra directa (forward strand): Hebra directa: 5'-TGCGATAC-3' Análogamente, si decido escribir esta misma secuencia empezando por el extremo 3’ se obtiene la hebra inversa (reverse strand): Hebra inversa: 3'-CATAGCGT-5' Escribe una función que reciba una hebra directa y regrese la hebra inversa. Utiliza cualquiera de las 3 variables generadas anteriormente. Se deberán imprimir ambas hebras; no hay necesidad de especificar en el ejercicio los extremos 5’ y 3’, pero sí es necesario especificar cuál es la hebra directa y cuál la hebra inversa
 ```{r}
@@ -108,8 +117,7 @@ reverse_strand <- function(direct_strand) {
 direct_strand <- "TGCGATAC"
 reverse_strand <- reverse_strand(direct_strand)
 
-print(paste("Direct strand:", direct_strand))
-print(paste("Reverse strand:", reverse_strand))
+c("Direct strand:", direct_strand, "Reverse strand:", reverse_strand)
 ```
 
 # 7. [10 pts] Normalmente se representa la molécula escribiendo primero la hebra directa y debajo la hebra complementaria (complementary strand). La hebra complementaria se escribe en sentido 3'→5' para que las bases de ambas hebras queden emparejadas: Hebra directa: 5'-TGCGATAC-3' Hebra complementaria: 3'-ACGCTATG-5'. Escribe una función qué reciba una hebra directa y obtenga la hebra complementaria. Utiliza cualquiera de las 3 variables generadas anteriormente. Se deberán imprimir ambas hebras; no hay necesidad de especificar en el ejercicio los extremos 5’ y 3’, pero sí es necesario especificar cuál es la hebra directa y cuál la hebra complementaria.
