@@ -6,7 +6,7 @@ output: pdf_document
 ---
 # Bruno Vázquez Espinoza - A00838521
 # Cyrce Danae Salinas Rojas - A01666121
-#1. Escribe una función que genere una secuencia aleatoria de DNA de tamaño “n”. Probar con n = 50 y guardarla en una variable.
+# 1. Escribe una función que genere una secuencia aleatoria de DNA de tamaño “n”. Probar con n = 50 y guardarla en una variable.
 ```{r}
 sequenceDNA <-function(size){
   x<- c("A", "T", "G", "C")

@@ -1,0 +1,42 @@
+### Bruno Vázquez Espinoza - A00838521
+### Cyrce Danae Salinas Rojas - A01666121
+
+# Genes y Genomas
+#### En un organismo con un genoma de ADN doble hélice, si G=C y A=T, entonces, ¿G+C = A+T? ¿Por qué?
+En un genoma de ADN de doble hélice, Guanina (G) siempre se empareja con Citosina ©, y Adenina (A) siempre se empareja con Timina (T). Por lo tanto, G+C forman un par de bases complementarias, al igual que A+T. Sin embargo, G+C no es igual a A+T en términos de cantidad total de bases. La suma de G+C no es igual a la suma de A+T debido a las diferencias en la estructura de las bases nitrogenadas y los enlaces de hidrógeno entre ellas. En resumen, aunque los pares de bases son complementarios, sus cantidades totales no son iguales.
+
+#### Si un organismo tiene 38% de A, ¿cuál es el porcentaje de G?
+Si un organismo tiene un 38% de adenina (A), según las reglas de apareamiento de bases nitrogenadas en el ADN, también tendrá un 38% de timina (T). Esto significa que la suma de A+T es igual al 76%. Como el ADN es una doble hélice, la suma de G+C también debe ser igual al 76%. Dado que G=C, el porcentaje de guanina (G) también será del 38%.
+
+#### ¿Cuáles son las consecuencias de un alto contenido de GC?
+Mayor estabilidad: Los enlaces de hidrógeno entre G y C son más fuertes que los de A y T, lo que hace que el ADN con mayor contenido de GC sea más estable y resistente a la desnaturalización.
+Mayor temperatura de fusión: La Tm, que es la temperatura a la que se separa la doble hélice del ADN, es más alta en ADN con alto contenido de GC.
+Mayor densidad de información genética: Las secuencias con GC alto pueden codificar más información en una longitud dada debido a la mayor estabilidad de la doble hélice.
+
+#### ¿A qué refiere el superenrollamiento del ADN?
+El ADN superenrollado es una molécula de ADN bicatenario que forma una superhélice. En lugar de seguir una curva plana, la doble hélice se enrolla sobre sí misma. Este fenómeno es crucial para la compactación y regulación del ADN.
+
+#### ¿Cómo se desnaturaliza el ADN? Es decir, ¿qué métodos se usan para separan las hebras?
+La desnaturalización del ADN implica separar las dos hebras de la doble hélice. Se puede lograr mediante calentamiento, cambios de pH o mediante agentes químicos.
+
+#### ¿Qué es la Tm del ADN de doble cadena?
+La Tm es la temperatura a la que se desnaturaliza la mitad del ADN de una mezcla. Depende del contenido de GC y afecta la estabilidad y la hibridación del ADN.
+
+#### ¿Por qué es importante saber la Tm de un segmento de ADN de doble cadena?  (desde el punto de vista biotecnológico)
+La Tm es crucial para diseñar cebadores en PCR hibridación y otras técnicas. Permite ajustar las condiciones para obtener resultados específicos.
+
+#### ¿Qué factores afectan la Tm? Menciona algunos factores que afectan la Tm.
+El contenido de GC, la longitud de la secuencia, la concentración de sal y otros factores influyen en la Tm.
+
+#### Ejercicio: Observa la siguiente secuencia y encuentra la secuencia complementaria, la reversa y la reversa complementaria: 5´-ATGCTTGACGCTCAAACCATCGC-3´
+- Secuencia complementaria: 3´-TACGAACTGCGAGTTTGGTAGCG-5´
+- Reversa: 5´-CGCTAGGACTCGAATTTGGATCG-3´
+- Reversa complementaria: 3´-GCTATCCTGACGCTAAACCTAGC-5´
+
+### Referencias:
+- Mira, P. J. (2021, 7 febrero). Desnaturalización: Definición, tipos funciones y ejemplos - El Gen Curioso. El Gen Curioso. https://www.elgencurioso.com/diccionario/desnaturalizacion/
+- cómo se desnaturaliza el adn. (s. f.). https://aleph.org.mx/como-se-desnaturaliza-el-adn
+- Tm (temperatura de fusión). (s. f.). https://www.genome.gov/es/genetics-glossary/Tm-Temperatura-de-fusion
+- Revisión y reparación del ADN (artículo) | Khan Academy. (s. f.). Khan Academy. https://es.khanacademy.org/science/biology/dna-as-the-genetic-material/dna-replication/a/dna-proofreading-and-repair
+- ¿Qué es el ADN superenrollado? (s. f.). https://www.genome.gov/es/genetics-glossary/ADN-superenrollado
+- Lololo. (2024, 10 febrero). Bacterias gram positivas: el impacto del alto contenido de GC - Coinref.es. Coinref.es. https://coinref.es/bacterias-gram-positivas-con-alto-contenido-de-gc/
