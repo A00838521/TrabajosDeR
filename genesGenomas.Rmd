@@ -9,7 +9,7 @@
 En un genoma de ADN de doble hélice, Guanina (G) siempre se empareja con Citosina ©, y Adenina (A) siempre se empareja con Timina (T). Por lo tanto, G+C forman un par de bases complementarias, al igual que A+T. Sin embargo, G+C no es igual a A+T en términos de cantidad total de bases. La suma de G+C no es igual a la suma de A+T debido a las diferencias en la estructura de las bases nitrogenadas y los enlaces de hidrógeno entre ellas. En resumen, aunque los pares de bases son complementarios, sus cantidades totales no son iguales.
 
 #### Si un organismo tiene 38% de A, ¿cuál es el porcentaje de G?
-Si un organismo tiene un 38% de adenina (A), según las reglas de apareamiento de bases nitrogenadas en el ADN, también tendrá un 38% de timina (T). Esto significa que la suma de A+T es igual al 76%. Como el ADN es una doble hélice, la suma de G+C también debe ser igual al 76%. Dado que G=C, el porcentaje de guanina (G) también será del 38%.
+Si un organismo tiene un 38% de adenina (A), según las reglas de apareamiento de bases nitrogenadas en el ADN, también tendrá un 38% de timina (T). Esto significa que la suma de A+T es igual al 76%. Como el ADN es una doble hélice, la suma de G+C y A+T  debe ser igual al 100%. Dado que G=C, el porcentaje de guanina (G) también será del 12%.
 
 #### ¿Cuáles son las consecuencias de un alto contenido de GC?
 Mayor estabilidad: Los enlaces de hidrógeno entre G y C son más fuertes que los de A y T, lo que hace que el ADN con mayor contenido de GC sea más estable y resistente a la desnaturalización.
@@ -36,6 +36,33 @@ El contenido de GC, la longitud de la secuencia, la concentración de sal y otro
 - Reversa: 5´-CGCTAGGACTCGAATTTGGATCG-3´
 - Reversa complementaria: 3´-GCTATCCTGACGCTAAACCTAGC-5´
 
+## Parte2 
+### Analicen la siguiente secuencia de una hebra del gene hmp (flavohemoglobina) de Escherichia coli, una bacteria mesófila, no patógena, enterobacteria y respondan: ¿cuál será la secuencia de aminoácidos de la flavohemoglobina? [20 pts] 
+
+```{r}
+library(stringi)
+library(seqinr)
+
+DNASequence <- c('ATGCTTGACGCTCAAACCATCGCTACAGTAAAAGCCACCATCCCTTTACTGGTGGAAACGGGGCCAAAGTTAACCGCCCATTTCTACGACCGTATGTTTACTCATAACCCAGAACTCAAAGAAATTTTTAACATGAGTAACCAGCGTAATGGCGATCAACGTGAAGCCCTGTTTAACGCTATTGCCGCCTACGCCAGTAATATTGAAAACCTGCCTGCGCTGCTGCCAGCGGTAGAAAAAATCGCGCAGAAGCACACCAGCTTCCAGATCAAACCGGAACAGTACAACATCGTCGGTGAACACCTGTTGGCAACGCTGGACGAAATGTTCAGCCCGGGGCAGGAAGTGCTGGACGCGTGGGGTAAAGCCTATGGTGTACTGGCTAATGTATTTATCAATCGCGAGGCGGAAATCTATAACGAAAACGCCAGCAAAGCCGGTGGTTGGGAAGGTACTCGCGATTTCCGCATTGTGGCTAAAACACCGCGCAGCGCGCTTATCACCAGCTTCGAACTGGAGCCGGTCGACGGTGGCGCAGTGGCAGAATACCGTCCGGGGCAATATCTCGGCGTCTGGCTGAAGCCGGAAGGTTTCCCACATCAGGAAATTCGTCAGTACTCTTTGACTCGCAAACCGGATGGCAAAGGCTATCGTATTGCGGTGAAACGCGAAGAGGGTGGGCAGGTATCCAACTGGTTGCACAATCACGCCAATGTTGGCGATGTCGTGAAACTGGTCGCTCCGGCAGGTGATTTCTTTATGGCTGTCGCAGATGACACACCAGTGACGTTAATCTCTGCCGGTGTTGGTCAAACGCCAATGCTGGCAATGCTCGACACGCTGGCAAAAGCAGGCCACACAGCACAAGTGAACTGGTTCCATGCGGCAGAAAATGGCGATGTTCACGCCTTTGCCGATGAAGTTAAGGAACTGGGGCAGTCACTGCCGCGCTTTACCGCGCACACCTGGTATCGTCAGCCGAGCGAAGCCGATCGCGCTAAAGGTCAGTTTGATAGCGAAGGTCTGATGGATTTGAGCAAACTGGAAGGTGCGTTCAGCGATCCGACAATGCAGTTCTATCTCTGCGGCCCGGTTGGCTTCATGCAGTTTACCGCGAAACAGTTAGTGGATCTGGGCGTGAAGCAGGAAAACATTCATTACGAATGCTTTGGCCCGCATAAGGTGCTGTAA')
+
+complementary_strand <- function(sequence) {
+  complement <- chartr("ATGC", "TACG", sequence)
+  return(complement)
+}
+
+DNAtoRNA <- function(sequence) {
+  RNA <- gsub("t", "u", sequence)
+  return(RNA)
+}
+#complementaria e invertir orden
+RNAm <- stri_reverse(complementary_strand(DNASequence))
+#timina por utacio
+RNA <- DNAtoRNA(RNAm)
+print(RNA)
+
+```
+
+
 ## Parte 3
 
 #### ¿Qué significa el formato FASTA de una secuencia? Describe sus características más relevantes que lo separan de otros formatos.
@@ -53,8 +80,15 @@ La secuencia de nucleótidos de la Alcohol Deshidrogenasa de Escherichia coli (g
 library(seqinr)
 ruta <- paste0(getwd(), .Platform$file.sep, "data", .Platform$file.sep, "sequence.fasta")
 
+
+
+dna <-read.fasta("sequence.fasta")
+print(dna)
+rna<-dna2rna(dna)
 sequence <- seqinr::read.fasta(file = paste0(getwd(),.Platform$file.sep,"translate.txt"), 
                             seqtype = "AA")
+
+
 
 seqinr::getSequence(sequence)
 
@@ -63,7 +97,6 @@ c2s(chars=sequence)
 print(sequence)
 
 ```
-<!-- Checar ultima respuesta, no estoy seguro de si esta mal -->
 
 ### Referencias:
 - Mira, P. J. (2021, 7 febrero). Desnaturalización: Definición, tipos funciones y ejemplos - El Gen Curioso. El Gen Curioso. https://www.elgencurioso.com/diccionario/desnaturalizacion/
@@ -73,4 +106,4 @@ print(sequence)
 - ¿Qué es el ADN superenrollado? (s. f.). https://www.genome.gov/es/genetics-glossary/ADN-superenrollado
 - Lololo. (2024, 10 febrero). Bacterias gram positivas: el impacto del alto contenido de GC - Coinref.es. Coinref.es. https://coinref.es/bacterias-gram-positivas-con-alto-contenido-de-gc/
 - Escherichia coli str. K-12 substr. MG1655, complete genome - Nucleotide - NCBI. (n.d.). https://www.ncbi.nlm.nih.gov/nuccore
-R: read FASTA formatted files. (n.d.). https://search.r-project.org/CRAN/refmans/seqinr/html/read.fasta.html
+- R: read FASTA formatted files. (n.d.). https://search.r-project.org/CRAN/refmans/seqinr/html/read.fasta.html
