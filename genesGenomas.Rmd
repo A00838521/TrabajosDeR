@@ -52,13 +52,11 @@ La secuencia de nucleótidos de la Alcohol Deshidrogenasa de Escherichia coli (g
 ```{r}
 library(seqinr)
 ruta <- paste0(getwd(), .Platform$file.sep, "data", .Platform$file.sep, "sequence.fasta")
-         
-a <- read.fasta(file = system.file("sequence.fasta")
-printf(a)
-                
 
->NC_000913.3:430000..430707 Escherichia coli str. K-12 substr. MG1655, complete genome
-ATGCAACGTTTCTGACGCT
+b<- read.fasta(file="sequence.fasta")
+print(b)
+c2s(chars=b)
+
 ```
 <!-- Checar ultima respuesta, no estoy seguro de si esta mal -->
 
