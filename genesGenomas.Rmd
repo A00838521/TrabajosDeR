@@ -38,7 +38,7 @@ El contenido de GC, la longitud de la secuencia, la concentración de sal y otro
 
 ## Parte2 
 ### Analicen la siguiente secuencia de una hebra del gene hmp (flavohemoglobina) de Escherichia coli, una bacteria mesófila, no patógena, enterobacteria y respondan: ¿cuál será la secuencia de aminoácidos de la flavohemoglobina? [20 pts] 
-
+LQHLMRAKAFVMNVFLLHAQIHstopLFRGKLHEANRAAENULLELHCRIAERTFQFAQIHQTFAIKLTFSAIGFARLTNULLPGVRGKARQstopLPQFLNFIGKGVNIAIFCRMEPVHNULLCCVACFCQRVEHCQHWRNULLTNTGRDstopRHWCVICDSHKEITCRSDQFHDIANIGVIVQPVGYLPTLFAFHRNTNULLAFAIRFANULLQRVLTNFLMWETFRLQPDAENULLNULLPRTVFCHCATVDRLQFEAGDKRAARCFSHNAEIANULLTFPTTGFAGVFVNULLDFRLAIDKYISQYTNULLGFTPRVQHFLPRAEHFVQRCQQVFTDDVVLFRFDLEAGVLLRDFFYRWQQRRQVFNITGVGGNSVKQGFTNULLIAITLVTHVKNFFEFWVMNULLKHTVVEMGGstopLWPRFHQstopRDGGFYCSDGNULLSVKH
 ```{r}
 library(stringi)
 library(seqinr)
@@ -79,11 +79,6 @@ amino_acids <- sapply(codons, function(x) codon[[x]])
 amino_acids_string <- paste(amino_acids, collapse = "")
 
 print(amino_acids_string)
-
-
-
-
-
 ```
 
 
@@ -96,7 +91,7 @@ El formato FASTA es un formato basado en texto utilizado para representar secuen
 3. Título de la secuencia: Opcional, brinda una breve descripción de la secuencia.
 
 #### ¿Qué bancos de datos existen para obtener secuencias de ADN de genomas de organismos?
-NCBI, EMBL, DDBJ, ENSEML, KEGG y OMIM
+NCBI, EMBL, DDBJ, ENSEML, KEGG y OMIM. Algunas siendo originarias de paises potencia como Estados Unidos, Japon e incluso Europa.
 
 #### Busca la secuencia de ADN de la Alcohol Deshidrogenasa de Escherichia coli (gen adhE) y obtengan la secuencia de nucleótidos.
 La secuencia de nucleótidos de la Alcohol Deshidrogenasa de Escherichia coli (gen adhE) es la siguiente:
@@ -104,19 +99,13 @@ La secuencia de nucleótidos de la Alcohol Deshidrogenasa de Escherichia coli (g
 library(seqinr)
 ruta <- paste0(getwd(), .Platform$file.sep, "data", .Platform$file.sep, "sequence.fasta")
 
-
-
 dna <-read.fasta("sequence.fasta")
 print(dna)
 rna<-dna2rna(dna)
 sequence <- seqinr::read.fasta(file = paste0(getwd(),.Platform$file.sep,"translate.txt"), 
                             seqtype = "AA")
 
-
-
 seqinr::getSequence(sequence)
-
-
 c2s(chars=sequence)
 print(sequence)
 
