@@ -2,6 +2,9 @@
 ### Cyrce Danae Salinas Rojas - A01666121
 
 # Genes y Genomas
+
+## Parte 1
+
 #### En un organismo con un genoma de ADN doble hélice, si G=C y A=T, entonces, ¿G+C = A+T? ¿Por qué?
 En un genoma de ADN de doble hélice, Guanina (G) siempre se empareja con Citosina ©, y Adenina (A) siempre se empareja con Timina (T). Por lo tanto, G+C forman un par de bases complementarias, al igual que A+T. Sin embargo, G+C no es igual a A+T en términos de cantidad total de bases. La suma de G+C no es igual a la suma de A+T debido a las diferencias en la estructura de las bases nitrogenadas y los enlaces de hidrógeno entre ellas. En resumen, aunque los pares de bases son complementarios, sus cantidades totales no son iguales.
 
@@ -32,6 +35,25 @@ El contenido de GC, la longitud de la secuencia, la concentración de sal y otro
 - Secuencia complementaria: 3´-TACGAACTGCGAGTTTGGTAGCG-5´
 - Reversa: 5´-CGCTAGGACTCGAATTTGGATCG-3´
 - Reversa complementaria: 3´-GCTATCCTGACGCTAAACCTAGC-5´
+
+## Parte 3
+
+#### ¿Qué significa el formato FASTA de una secuencia? Describe sus características más relevantes que lo separan de otros formatos.
+El formato FASTA es un formato basado en texto utilizado para representar secuencias de nucleótidos o aminoácidos mediante códigos que emplean letras. Sus características más relevantes son:
+1. Línea de definición: Comienza con un símbolo de mayor que (">"), seguido de un identificador único de secunecia (SeqID).
+2. Información de la fuente: Proporciona detalles sobre el organismo del cual se obtuvo la secuencia.
+3. Título de la secuencia: Opcional, brinda una breve descripción de la secuencia.
+
+#### ¿Qué bancos de datos existen para obtener secuencias de ADN de genomas de organismos?
+
+
+#### Busca la secuencia de ADN de la Alcohol Deshidrogenasa de Escherichia coli (gen adhE) y obtengan la secuencia de nucleótidos.
+La secuencia de nucleótidos de la Alcohol Deshidrogenasa de Escherichia coli (gen adhE) es la siguiente:
+```
+>NC_000913.3:430000..430707 Escherichia coli str. K-12 substr. MG1655, complete genome
+ATGCAACGTTTCTGACGCT
+```
+<!-- Checar ultima respuesta, no estoy seguro de si esta mal -->
 
 ### Referencias:
 - Mira, P. J. (2021, 7 febrero). Desnaturalización: Definición, tipos funciones y ejemplos - El Gen Curioso. El Gen Curioso. https://www.elgencurioso.com/diccionario/desnaturalizacion/
