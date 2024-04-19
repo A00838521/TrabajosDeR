@@ -53,9 +53,14 @@ La secuencia de nucleótidos de la Alcohol Deshidrogenasa de Escherichia coli (g
 library(seqinr)
 ruta <- paste0(getwd(), .Platform$file.sep, "data", .Platform$file.sep, "sequence.fasta")
 
-b<- read.fasta(file="sequence.fasta")
-print(b)
-c2s(chars=b)
+sequence <- seqinr::read.fasta(file = paste0(getwd(),.Platform$file.sep,"translate.txt"), 
+                            seqtype = "AA")
+
+seqinr::getSequence(sequence)
+
+
+c2s(chars=sequence)
+print(sequence)
 
 ```
 <!-- Checar ultima respuesta, no estoy seguro de si esta mal -->
