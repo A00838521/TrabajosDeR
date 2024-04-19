@@ -45,11 +45,18 @@ El formato FASTA es un formato basado en texto utilizado para representar secuen
 3. Título de la secuencia: Opcional, brinda una breve descripción de la secuencia.
 
 #### ¿Qué bancos de datos existen para obtener secuencias de ADN de genomas de organismos?
-
+NCBI, EMBL, DDBJ, ENSEML, KEGG y OMIM
 
 #### Busca la secuencia de ADN de la Alcohol Deshidrogenasa de Escherichia coli (gen adhE) y obtengan la secuencia de nucleótidos.
 La secuencia de nucleótidos de la Alcohol Deshidrogenasa de Escherichia coli (gen adhE) es la siguiente:
-```
+```{r}
+library(seqinr)
+ruta <- paste0(getwd(), .Platform$file.sep, "data", .Platform$file.sep, "sequence.fasta")
+         
+a <- read.fasta(file = system.file("sequence.fasta")
+printf(a)
+                
+
 >NC_000913.3:430000..430707 Escherichia coli str. K-12 substr. MG1655, complete genome
 ATGCAACGTTTCTGACGCT
 ```
@@ -62,3 +69,5 @@ ATGCAACGTTTCTGACGCT
 - Revisión y reparación del ADN (artículo) | Khan Academy. (s. f.). Khan Academy. https://es.khanacademy.org/science/biology/dna-as-the-genetic-material/dna-replication/a/dna-proofreading-and-repair
 - ¿Qué es el ADN superenrollado? (s. f.). https://www.genome.gov/es/genetics-glossary/ADN-superenrollado
 - Lololo. (2024, 10 febrero). Bacterias gram positivas: el impacto del alto contenido de GC - Coinref.es. Coinref.es. https://coinref.es/bacterias-gram-positivas-con-alto-contenido-de-gc/
+- Escherichia coli str. K-12 substr. MG1655, complete genome - Nucleotide - NCBI. (n.d.). https://www.ncbi.nlm.nih.gov/nuccore
+R: read FASTA formatted files. (n.d.). https://search.r-project.org/CRAN/refmans/seqinr/html/read.fasta.html
