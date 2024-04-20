@@ -163,3 +163,9 @@ for (chunk in chunks) {
 - Lololo. (2024, 10 febrero). Bacterias gram positivas: el impacto del alto contenido de GC - Coinref.es. Coinref.es. https://coinref.es/bacterias-gram-positivas-con-alto-contenido-de-gc/
 - Escherichia coli str. K-12 substr. MG1655, complete genome - Nucleotide - NCBI. (n.d.). https://www.ncbi.nlm.nih.gov/nuccore
 - R: read FASTA formatted files. (n.d.). https://search.r-project.org/CRAN/refmans/seqinr/html/read.fasta.html
+```{r}
+dna2rna <- function(dna) {
+  rna <- chartr("T", "U", dna)
+  return(rna)
+}
+```
