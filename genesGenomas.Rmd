@@ -1,3 +1,10 @@
+
+---
+title: "genes"
+author: Cyrce Salinas
+date: March 22, 2005
+output: pdf_document
+---
 ### Bruno Vázquez Espinoza - A00838521
 ### Cyrce Danae Salinas Rojas - A01666121
 
@@ -96,18 +103,54 @@ NCBI, EMBL, DDBJ, ENSEML, KEGG y OMIM. Algunas siendo originarias de paises pote
 #### Busca la secuencia de ADN de la Alcohol Deshidrogenasa de Escherichia coli (gen adhE) y obtengan la secuencia de nucleótidos.
 La secuencia de nucleótidos de la Alcohol Deshidrogenasa de Escherichia coli (gen adhE) es la siguiente:
 ```{r}
+install.packages("stringr")
+library(stringr)
 library(seqinr)
-ruta <- paste0(getwd(), .Platform$file.sep, "data", .Platform$file.sep, "sequence.fasta")
 
-dna <-read.fasta("sequence.fasta")
-print(dna)
-rna<-dna2rna(dna)
-sequence <- seqinr::read.fasta(file = paste0(getwd(),.Platform$file.sep,"translate.txt"), 
-                            seqtype = "AA")
+#sequence.fasta es un archivo proveniente de la base de datos ncbi
+fasta_file <- "sequence.fasta"
+fasta_lines <- readLines(fasta_file)
 
-seqinr::getSequence(sequence)
-c2s(chars=sequence)
+# Remove the header line
+sequence <- paste(fasta_lines[-1], collapse = "")
+
+# Optionally remove non-nucleotide characters
+sequence <- gsub("[^ACTGactg]", "", sequence)
+
+# Now 'sequence' contains your cleaned DNA sequence
 print(sequence)
+
+nucleotide_sequence <- function(sequence) {
+  countA <- 0
+  countT <- 0
+  countG <- 0
+  countC <- 0
+  
+  for (i in sequence) { 
+    if (toupper(i) == "A") {
+      countA <- countA + 1
+    } else if (toupper(i) == "T") {
+      countT <- countT + 1
+    } else if (toupper(i) == "G") {
+      countG <- countG + 1
+    } else if (toupper(i) == "C") {
+      countC <- countC + 1
+    }
+  }
+  
+  cat("A:", countA, "T:", countT, "G:", countG, "C:", countC, "\n")
+}
+
+# Split the sequence into smaller chunks
+chunk_size <- 10
+chunks <- strsplit(sequence, "")
+for (chunk in chunks) {
+  nucleotide_sequence(chunk)
+}
+
+```
+
+
 
 ```
 
