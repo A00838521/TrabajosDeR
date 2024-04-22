@@ -1,0 +1,37 @@
+---
+title: "act#3"
+output: html_document
+date: "2024-04-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Instrucciones: Realiza los siguientes ejercicios en R Studio y comparte tu script con la solución de
+todos:
+Dentro de NCBI busca las secuencias de las siguientes entidades:
+• Zika virus, complete genome
+• SARS coronavirus, complete genome
+• Wuhan seafood market pneumonia virus isolate Wuhan-Hu-1, complete genome
+• Middle East respiratory syndrome coronavirus, complete genome
+• Dengue virus 1, complete genome
+Para estos virus puedes utilizar: https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/
+Además, busca las secuencias de H1N1 que apareció en México en 2009 y obtén todos los
+segmentos del virus:
+Para influenza utiliza el buscador:
+https://www.ncbi.nlm.nih.gov/genomes/FLU/Database/nph-select.cgi?go=database
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
