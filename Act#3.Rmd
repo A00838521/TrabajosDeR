@@ -22,11 +22,32 @@ Para influenza utiliza el buscador:
 https://www.ncbi.nlm.nih.gov/genomes/FLU/Database/nph-select.cgi?go=database
 
 
-```{r cars}
-summary(cars)
+
+
+
+1. ¿Cuál es el tamaño de cada secuencia?
+
+
+```{r}
+
 ```
 
-## Including Plots
+2. ¿Cuál es la composición de nucleótidos de cada secuencia? (puedes usar conteo, proporción o
+porcentaje)
+3. ¿Cuál es el %GC?
+4. Crear una función para mostrar la hebra directa y la complementaria, recuerda que la
+complementaria es como en el siguiente ejemplo:
+Virus original: agttgttagt...
+Complementaria: tcaacaatca...
+Nota: Ya que se estará trabajando con secuencias con miles de nucleótidos, favor de utilizar las
+funciones head() y tail() para sólo mostrar en el output de 30 a 100 nucleótidos.
+5. Crear una gráfica en R, utilizando funciones como plot() o barplot(), donde se muestren las
+composiciones de nucleótidos
+
+```{r}
+
+```
+
 
 You can also embed plots, for example:
 
