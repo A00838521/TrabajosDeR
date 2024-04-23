@@ -183,7 +183,27 @@ c("EL tamaño de secuencia es: ", sizeZIKA)
 composiciones de nucleótidos
 
 ```{r}
+library(ggplot2)
+install.packages("ggplot2")
+library(reshape2)
 
+genomes<-c('Zika virus,', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1')
+size<-c(sizeZIKA, sizeSARS, sizeWUHAN, sizeMIDDLE, sizeDENGUE )
+a<-c(aInZIKA, aInSARS, aInWUHAN, aInMIDDLE, aInDENGUE)
+c<-c(cInZIKA, cInSARS, cInWUHAN, cInMIDDLE, cInDENGUE)
+g<-c(gInZIKA, gInSARS, gInWUHAN, gInMIDDLE, gInDENGUE)
+t<-c(tInZIKA, tInSARS, tInWUHAN, tInMIDDLE, tInDENGUE)
+df <- data.frame(genomes, size,a,c,g,t)
+
+print(df)
+
+dfm <- melt(df, id.vars = "genomes")
+ggplot(dfm, aes(x = genomes, y = value, fill = variable)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Composición de nucleótidos en diferentes genomas",
+       x = "Genomas",
+       y = "Porcentaje") +
+  theme_minimal()
 ```
 
 
@@ -192,10 +212,10 @@ You can also embed plots, for example:
 ```{r}
 genomes<-c('Zika virus,', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1')
 size<-c(sizeZIKA, sizeSARS, sizeWUHAN, sizeMIDDLE, sizeDENGUE )
-a<-c(aInZIKA, aInSARS, aInWUHAN, aInMIDDLE, aInDENGUE)
-c<-c(cInZIKA, cInSARS, cInWUHAN, cInMIDDLE, cInDENGUE)
-g<-c(gInZIKA, gInSARS, gInWUHAN, gInMIDDLE, gInDENGUE)
-t<-c(tInZIKA, tInSARS, tInWUHAN, tInMIDDLE, tInDENGUE)
+a<-c(aInZIKA, aInSARS, aInWUHAN, aInMIDDLE, aInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
+c<-c(cInZIKA, cInSARS, cInWUHAN, cInMIDDLE, cInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
+g<-c(gInZIKA, gInSARS, gInWUHAN, gInMIDDLE, gInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
+t<-c(tInZIKA, tInSARS, tInWUHAN, tInMIDDLE, tInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
 df <- data.frame(genomes, size,a,c,g,t)
 
 print(df)
