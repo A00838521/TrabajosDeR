@@ -29,7 +29,6 @@ DENGUE<-read.fasta(file="src/Dengue.fasta", as.string = TRUE)
 ```
 
 1. ¿Cuál es el tamaño de cada secuencia?
-
 ```{r}
 library(Biostrings)
 library(stringi)
@@ -64,13 +63,7 @@ funciones head() y tail() para sólo mostrar en el output de 30 a 100 nucleótid
 
 
 ```{r}
-library(Biostrings)
-library(stringi)
-library(seqinr)
 
-ZIKA <-read.fasta(file="src/Zika.fasta",  as.string = TRUE)
-sizeZIKA<-stri_length(ZIKA)
-c("EL tamaño de secuencia es: ", sizeZIKA)
 ```
 5. Crear una gráfica en R, utilizando funciones como plot() o barplot(), donde se muestren las
 composiciones de nucleótidos
