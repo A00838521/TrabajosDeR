@@ -98,11 +98,72 @@ gInDENGUE <- nucleotide_compositions[["DENGUE"]]["G"]
 tInDENGUE <- nucleotide_compositions[["DENGUE"]]["T"]
 cInDENGUE <- nucleotide_compositions[["DENGUE"]]["C"]
 
+aInH1N185 <- nucleotide_compositions[["H1N185"]]["A"]
+gInH1N185 <- nucleotide_compositions[["H1N185"]]["G"]
+tInH1N185 <- nucleotide_compositions[["H1N185"]]["T"]
+cInH1N185 <- nucleotide_compositions[["H1N185"]]["C"]
+
+aInH1N186 <- nucleotide_compositions[["H1N186"]]["A"]
+gInH1N186 <- nucleotide_compositions[["H1N186"]]["G"]
+tInH1N186 <- nucleotide_compositions[["H1N186"]]["T"]
+cInH1N186 <- nucleotide_compositions[["H1N186"]]["C"]
+
+aInH1N187 <- nucleotide_compositions[["H1N187"]]["A"]
+gInH1N187 <- nucleotide_compositions[["H1N187"]]["G"]
+tInH1N187 <- nucleotide_compositions[["H1N187"]]["T"]
+cInH1N187 <- nucleotide_compositions[["H1N187"]]["C"]
+
+aInH1N188 <- nucleotide_compositions[["H1N188"]]["A"]
+gInH1N188 <- nucleotide_compositions[["H1N188"]]["G"]
+tInH1N188 <- nucleotide_compositions[["H1N188"]]["T"]
+cInH1N188 <- nucleotide_compositions[["H1N188"]]["C"]
+
+aInH1N189 <- nucleotide_compositions[["H1N189"]]["A"]
+gInH1N189 <- nucleotide_compositions[["H1N189"]]["G"]
+tInH1N189 <- nucleotide_compositions[["H1N189"]]["T"]
+cInH1N189 <- nucleotide_compositions[["H1N189"]]["C"]
+
+aInH1N190 <- nucleotide_compositions[["H1N190"]]["A"]
+gInH1N190 <- nucleotide_compositions[["H1N190"]]["G"]
+tInH1N190 <- nucleotide_compositions[["H1N190"]]["T"]
+cInH1N190 <- nucleotide_compositions[["H1N190"]]["C"]
+
+aInH1N191 <- nucleotide_compositions[["H1N191"]]["A"]
+gInH1N191 <- nucleotide_compositions[["H1N191"]]["G"]
+tInH1N191 <- nucleotide_compositions[["H1N191"]]["T"]
+cInH1N191 <- nucleotide_compositions[["H1N191"]]["C"]
+
+aInH1N192 <- nucleotide_compositions[["H1N192"]]["A"]
+gInH1N192 <- nucleotide_compositions[["H1N192"]]["G"]
+tInH1N192 <- nucleotide_compositions[["H1N192"]]["T"]
+cInH1N192 <- nucleotide_compositions[["H1N192"]]["C"]
 ```
 
 3. ¿Cuál es el %GC?
-
 ```{r}
+calculate_gc_content <- function(sequence) {
+  dna_sequence <- DNAString(sequence)
+  gc_count <- letterFrequency(dna_sequence, letters=c("G", "C"))
+  gc_percentage <- sum(gc_count) / sum(letterFrequency(dna_sequence)) * 100
+  result <- gc_percentage
+  return(result)
+}
+
+gc_content <- lapply(sequences, calculate_gc_content)
+
+gcInZIKA <- gc_content[["ZIKA"]]
+gcInSARS <- gc_content[["SARS"]]
+gcInWUHAN <- gc_content[["WUHAN"]]
+gcInMIDDLE <- gc_content[["MIDDLE"]]
+gcInDENGUE <- gc_content[["DENGUE"]]
+gcInH1N185 <- gc_content[["H1N185"]]
+gcInH1N186 <- gc_content[["H1N186"]]
+gcInH1N187 <- gc_content[["H1N187"]]
+gcInH1N188 <- gc_content[["H1N188"]]
+gcInH1N189 <- gc_content[["H1N189"]]
+gcInH1N190 <- gc_content[["H1N190"]]
+gcInH1N191 <- gc_content[["H1N191"]]
+gcInH1N192 <- gc_content[["H1N192"]]
 ```
 4. Crear una función para mostrar la hebra directa y la complementaria, recuerda que la
 complementaria es como en el siguiente ejemplo:
