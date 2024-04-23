@@ -4,9 +4,6 @@ output: html_document
 date: "2024-04-22"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 Instrucciones: Realiza los siguientes ejercicios en R Studio y comparte tu script con la solución de
 todos:
 Dentro de NCBI busca las secuencias de las siguientes entidades:
