@@ -35,31 +35,33 @@ H1N189<-read.fasta(file="src/89.fasta", as.string = TRUE)
 H1N190<-read.fasta(file="src/90.fasta", as.string = TRUE)
 H1N191<-read.fasta(file="src/91.fasta", as.string = TRUE)
 H1N192<-read.fasta(file="src/92.fasta", as.string = TRUE)
-
 ```
 
 1. ¿Cuál es el tamaño de cada secuencia?
 ```{r}
-sizeZIKA<-stri_length(ZIKA)
-sizeSARS<-stri_length(SARS)
-sizeWUHAN<-stri_length(WUHAN)
-sizeMIDDLE<-stri_length(MIDDLE)
-sizeDENGUE<-stri_length(DENGUE)
-sizeH1N185<-stri_length(H1N185)
-sizeH1N186<-stri_length(H1N186)
-sizeH1N187<-stri_length(H1N187)
-sizeH1N188<-stri_length(H1N188)
-sizeH1N189<-stri_length(H1N189)
-sizeH1N190<-stri_length(H1N190)
-sizeH1N191<-stri_length(H1N191)
-sizeH1N192<-stri_length(H1N192)
+library(seqinr)
 
+sizeZIKA <- length(ZIKA)
+sizeSARS <- length(SARS)
+sizeWUHAN <- length(WUHAN)
+sizeMIDDLE <- length(MIDDLE)
+sizeDENGUE <- length(DENGUE)
+sizeH1N185 <- length(H1N185)
+sizeH1N186 <- length(H1N186)
+sizeH1N187 <- length(H1N187)
+sizeH1N188 <- length(H1N188)
+sizeH1N189 <- length(H1N189)
+sizeH1N190 <- length(H1N190)
+sizeH1N191 <- length(H1N191)
+sizeH1N192 <- length(H1N192)
 ```
 
 2. ¿Cuál es la composición de nucleótidos de cada secuencia? (puedes usar conteo, proporción o
 porcentaje)
-
 ```{r}
+library(Biostrings)
+library(reshape2)
+library(ggplot2)
 calculate_nucleotide_composition <- function(sequence) {
   dna_sequence <- DNAString(sequence)
   nucleotide_count <- letterFrequency(dna_sequence, letters=c("A", "G", "T", "C"))
@@ -70,7 +72,6 @@ calculate_nucleotide_composition <- function(sequence) {
 
 sequences <- list(ZIKA = ZIKA, SARS = SARS, WUHAN = WUHAN, MIDDLE = MIDDLE, DENGUE = DENGUE)
 nucleotide_compositions <- lapply(sequences, calculate_nucleotide_composition)
-
 
 aInZIKA <- nucleotide_compositions[["ZIKA"]]["A"]
 gInZIKA <- nucleotide_compositions[["ZIKA"]]["G"]
@@ -86,7 +87,6 @@ aInWUHAN <- nucleotide_compositions[["WUHAN"]]["A"]
 gInWUHAN <- nucleotide_compositions[["WUHAN"]]["G"]
 tInWUHAN <- nucleotide_compositions[["WUHAN"]]["T"]
 cInWUHAN <- nucleotide_compositions[["WUHAN"]]["C"]
-
 
 aInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["A"]
 gInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["G"]
@@ -139,6 +139,7 @@ tInH1N192 <- nucleotide_compositions[["H1N192"]]["T"]
 cInH1N192 <- nucleotide_compositions[["H1N192"]]["C"]
 ```
 
+
 3. ¿Cuál es el %GC?
 ```{r}
 calculate_gc_content <- function(sequence) {
@@ -174,7 +175,6 @@ funciones head() y tail() para sólo mostrar en el output de 30 a 100 nucleótid
 
 
 ```{r}
-
 head(ZIKA, 30)
 tail(ZIKA, 100)
 
@@ -243,6 +243,14 @@ ggplot(dfm, aes(x = genomes, y = value, fill = variable)) +
   theme_minimal()
 ```
 
+
+5. Crear una gráfica en R, utilizando funciones como plot() o barplot(), donde se muestren las
+composiciones de nucleótidos.
+```{r}
+df <- data.frame(genomes, size,a,c,g,t)
+
+print(df)
+```
 
 You can also embed plots, for example:
 
