@@ -22,46 +22,43 @@ https://www.ncbi.nlm.nih.gov/genomes/FLU/Database/nph-select.cgi?go=database
 Read files
 ```{r}
 library(seqinr)
-ZIKA <-read.fasta(file="src/Zika.fasta",  as.string = TRUE)
-SARS<-read.fasta(file="src/SARS.fasta", as.string = TRUE)
-WUHAN <-read.fasta(file="src/Wuhan.fasta",  as.string = TRUE)
-MIDDLE<-read.fasta(file="src/Middle.fasta", as.string = TRUE)
-DENGUE<-read.fasta(file="src/Dengue.fasta", as.string = TRUE)
-H1N185<-read.fasta(file="src/85.fasta", as.string = TRUE)
-H1N186<-read.fasta(file="src/86.fasta", as.string = TRUE)
-H1N187<-read.fasta(file="src/87.fasta", as.string = TRUE)
-H1N188<-read.fasta(file="src/88.fasta", as.string = TRUE)
-H1N189<-read.fasta(file="src/89.fasta", as.string = TRUE)
-H1N190<-read.fasta(file="src/90.fasta", as.string = TRUE)
-H1N191<-read.fasta(file="src/91.fasta", as.string = TRUE)
-H1N192<-read.fasta(file="src/92.fasta", as.string = TRUE)
+ZIKA <-unlist(read.fasta(file="src/Zika.fasta",  as.string = TRUE))
+SARS<-unlist(read.fasta(file="src/SARS.fasta", as.string = TRUE))
+WUHAN <-unlist(read.fasta(file="src/Wuhan.fasta",  as.string = TRUE))
+MIDDLE<-unlist(read.fasta(file="src/Middle.fasta", as.string = TRUE))
+DENGUE<-unlist(read.fasta(file="src/Dengue.fasta", as.string = TRUE))
+H1N185<-unlist(read.fasta(file="src/85.fasta", as.string = TRUE))
+H1N186<-unlist(read.fasta(file="src/86.fasta", as.string = TRUE))
+H1N187<-unlist(read.fasta(file="src/87.fasta", as.string = TRUE))
+H1N188<-unlist(read.fasta(file="src/88.fasta", as.string = TRUE))
+H1N189<-unlist(read.fasta(file="src/89.fasta", as.string = TRUE))
+H1N190<-unlist(read.fasta(file="src/90.fasta", as.string = TRUE))
+H1N191<-unlist(read.fasta(file="src/91.fasta", as.string = TRUE))
+H1N192<-unlist(read.fasta(file="src/92.fasta", as.string = TRUE))
 ```
 
 1. ¿Cuál es el tamaño de cada secuencia?
 ```{r}
 library(seqinr)
 
-sizeZIKA <- length(ZIKA)
-sizeSARS <- length(SARS)
-sizeWUHAN <- length(WUHAN)
-sizeMIDDLE <- length(MIDDLE)
-sizeDENGUE <- length(DENGUE)
-sizeH1N185 <- length(H1N185)
-sizeH1N186 <- length(H1N186)
-sizeH1N187 <- length(H1N187)
-sizeH1N188 <- length(H1N188)
-sizeH1N189 <- length(H1N189)
-sizeH1N190 <- length(H1N190)
-sizeH1N191 <- length(H1N191)
-sizeH1N192 <- length(H1N192)
+sizeZIKA <- stri_length(ZIKA)
+sizeSARS <- stri_length(SARS)
+sizeWUHAN <- stri_length(WUHAN)
+sizeMIDDLE <- stri_length(MIDDLE)
+sizeDENGUE <- stri_length(DENGUE)
+sizeH1N185 <- stri_length(H1N185)
+sizeH1N186 <- stri_length(H1N186)
+sizeH1N187 <- stri_length(H1N187)
+sizeH1N188 <- stri_length(H1N188)
+sizeH1N189 <- stri_length(H1N189)
+sizeH1N190 <- stri_length(H1N190)
+sizeH1N191 <- stri_length(H1N191)
+sizeH1N192 <- stri_length(H1N192)
 ```
 
 2. ¿Cuál es la composición de nucleótidos de cada secuencia? (puedes usar conteo, proporción o
 porcentaje)
 ```{r}
-library(Biostrings)
-library(reshape2)
-library(ggplot2)
 calculate_nucleotide_composition <- function(sequence) {
   dna_sequence <- DNAString(sequence)
   nucleotide_count <- letterFrequency(dna_sequence, letters=c("A", "G", "T", "C"))
@@ -87,6 +84,7 @@ aInWUHAN <- nucleotide_compositions[["WUHAN"]]["A"]
 gInWUHAN <- nucleotide_compositions[["WUHAN"]]["G"]
 tInWUHAN <- nucleotide_compositions[["WUHAN"]]["T"]
 cInWUHAN <- nucleotide_compositions[["WUHAN"]]["C"]
+
 
 aInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["A"]
 gInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["G"]
@@ -137,6 +135,8 @@ aInH1N192 <- nucleotide_compositions[["H1N192"]]["A"]
 gInH1N192 <- nucleotide_compositions[["H1N192"]]["G"]
 tInH1N192 <- nucleotide_compositions[["H1N192"]]["T"]
 cInH1N192 <- nucleotide_compositions[["H1N192"]]["C"]
+
+
 ```
 3. ¿Cuál es el %GC?
 ```{r}
@@ -253,13 +253,15 @@ print(df)
 You can also embed plots, for example:
 
 ```{r}
-genomes<-c('Zika virus,', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1', 'H1N185', 'H1N186', 'H1N187', 'H1N188', 'H1N189', 'H1N190', 'H1N191', 'H1N192')
+genomes<-c('Zika virus', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1', 'H1N185', 'H1N186', 'H1N187', 'H1N188', 'H1N189', 'H1N190', 'H1N191', 'H1N192')
 size<-c(sizeZIKA, sizeSARS, sizeWUHAN, sizeMIDDLE, sizeDENGUE, sizeH1N185, sizeH1N186,  sizeH1N187,sizeH1N188,sizeH1N189, sizeH1N190, sizeH1N191, sizeH1N192 )
 a<-c(aInZIKA, aInSARS, aInWUHAN, aInMIDDLE, aInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
+
+
 c<-c(cInZIKA, cInSARS, cInWUHAN, cInMIDDLE, cInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
 g<-c(gInZIKA, gInSARS, gInWUHAN, gInMIDDLE, gInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
 t<-c(tInZIKA, tInSARS, tInWUHAN, tInMIDDLE, tInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
-df <- data.frame(genomes, size,a,c,g,t)
+df <- data.frame(genomes, size)
 
 print(df)
 ```
