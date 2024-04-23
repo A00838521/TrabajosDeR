@@ -138,8 +138,6 @@ gInH1N192 <- nucleotide_compositions[["H1N192"]]["G"]
 tInH1N192 <- nucleotide_compositions[["H1N192"]]["T"]
 cInH1N192 <- nucleotide_compositions[["H1N192"]]["C"]
 ```
-
-
 3. ¿Cuál es el %GC?
 ```{r}
 calculate_gc_content <- function(sequence) {
