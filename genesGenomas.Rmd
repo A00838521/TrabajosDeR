@@ -39,9 +39,23 @@ La Tm es crucial para diseñar cebadores en PCR hibridación y otras técnicas. 
 El contenido de GC, la longitud de la secuencia, la concentración de sal y otros factores influyen en la Tm.
 
 #### Ejercicio: Observa la siguiente secuencia y encuentra la secuencia complementaria, la reversa y la reversa complementaria: 5´-ATGCTTGACGCTCAAACCATCGC-3´
-- Secuencia complementaria: 3´-TACGAACTGCGAGTTTGGTAGCG-5´
-- Reversa: 5´-CGCTAGGACTCGAATTTGGATCG-3´
-- Reversa complementaria: 3´-GCTATCCTGACGCTAAACCTAGC-5´
+```{r}
+library(stringi)
+library(seqinr)
+
+sequence <- c('ATGCTTGACGCTCAAACCATCGC')
+
+complementary_strand <- function(sequence) {
+  complement <- chartr("ATGC", "TACG", sequence)
+  return(complement)
+}
+complementary_sequence <-complementary_strand(sequence)
+reverse <- stri_reverse(sequence)
+
+complementary_reverse <- complementary_strand(reverse)
+
+c('complementaria: ', complementary_sequence, 'reversa: ', reverse, 'reversa complementaria: ', complementary_reverse)
+```
 
 ## Parte2 
 ### Analicen la siguiente secuencia de una hebra del gene hmp (flavohemoglobina) de Escherichia coli, una bacteria mesófila, no patógena, enterobacteria y respondan: ¿cuál será la secuencia de aminoácidos de la flavohemoglobina? [20 pts] 
