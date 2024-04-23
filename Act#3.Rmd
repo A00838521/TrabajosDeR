@@ -24,6 +24,7 @@ https://www.ncbi.nlm.nih.gov/genomes/FLU/Database/nph-select.cgi?go=database
 
 Read files
 ```{r}
+library(seqinr)
 ZIKA <-read.fasta(file="src/Zika.fasta",  as.string = TRUE)
 SARS<-read.fasta(file="src/SARS.fasta", as.string = TRUE)
 WUHAN <-read.fasta(file="src/Wuhan.fasta",  as.string = TRUE)
