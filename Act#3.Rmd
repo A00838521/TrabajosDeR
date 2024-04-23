@@ -175,25 +175,62 @@ funciones head() y tail() para sólo mostrar en el output de 30 a 100 nucleótid
 
 ```{r}
 
-ZIKA <-read.fasta(file="src/Zika.fasta",  as.string = TRUE)
-sizeZIKA<-stri_length(ZIKA)
-c("EL tamaño de secuencia es: ", sizeZIKA)
-```
-5. Crear una gráfica en R, utilizando funciones como plot() o barplot(), donde se muestren las
-composiciones de nucleótidos
+head(ZIKA, 30)
+tail(ZIKA, 100)
 
-```{r}
-library(ggplot2)
-install.packages("ggplot2")
-library(reshape2)
+head(SARS, 30)
+tail(SARS, 100)
 
-genomes<-c('Zika virus,', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1')
-size<-c(sizeZIKA, sizeSARS, sizeWUHAN, sizeMIDDLE, sizeDENGUE )
-a<-c(aInZIKA, aInSARS, aInWUHAN, aInMIDDLE, aInDENGUE)
-c<-c(cInZIKA, cInSARS, cInWUHAN, cInMIDDLE, cInDENGUE)
-g<-c(gInZIKA, gInSARS, gInWUHAN, gInMIDDLE, gInDENGUE)
-t<-c(tInZIKA, tInSARS, tInWUHAN, tInMIDDLE, tInDENGUE)
-df <- data.frame(genomes, size,a,c,g,t)
+head(WUHAN, 30)
+tail(WUHAN, 100)
+
+head(MIDDLE, 30)
+tail(MIDDLE, 100)
+
+head(DENGUE, 30)
+tail(DENGUE, 100)
+
+head(H1N185, 30)
+tail(H1N185, 100)
+
+head(H1N186, 30)
+tail(H1N186, 100)
+
+head(H1N187, 30)
+tail(H1N187, 100)
+
+head(H1N188, 30)
+tail(H1N188, 100)
+
+head(H1N189, 30)
+tail(H1N189, 100)
+
+head(H1N190, 30)
+tail(H1N190, 100)
+
+head(H1N191, 30)
+tail(H1N191, 100)
+
+head(H1N192, 30)
+tail(H1N192, 100)
+
+complementaria <- function(sequence) {
+  dna_sequence <- DNAString(sequence)
+  complement <- reverseComplement(dna_sequence)
+  result <- complement
+  return(result)
+}
+
+complement_MIDDLE <- complementaria(MIDDLE)
+complement_DENGUE <- complementaria(DENGUE)
+complement_H1N185 <- complementaria(H1N185)
+complement_H1N186 <- complementaria(H1N186)
+complement_H1N187 <- complementaria(H1N187)
+complement_H1N188 <- complementaria(H1N188)
+complement_H1N189 <- complementaria(H1N189)
+complement_H1N190 <- complementaria(H1N190)
+complement_H1N191 <- complementaria(H1N191)
+complement_H1N192 <- complementaria(H1N192)
 
 print(df)
 
