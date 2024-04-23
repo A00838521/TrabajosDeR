@@ -103,7 +103,6 @@ NCBI, EMBL, DDBJ, ENSEML, KEGG y OMIM. Algunas siendo originarias de paises pote
 #### Busca la secuencia de ADN de la Alcohol Deshidrogenasa de Escherichia coli (gen adhE) y obtengan la secuencia de nucleótidos.
 La secuencia de nucleótidos de la Alcohol Deshidrogenasa de Escherichia coli (gen adhE) es la siguiente:
 ```{r}
-install.packages("stringr")
 library(stringr)
 library(seqinr)
 
@@ -150,10 +149,6 @@ for (chunk in chunks) {
 
 ```
 
-
-
-```
-
 ### Referencias:
 - Mira, P. J. (2021, 7 febrero). Desnaturalización: Definición, tipos funciones y ejemplos - El Gen Curioso. El Gen Curioso. https://www.elgencurioso.com/diccionario/desnaturalizacion/
 - cómo se desnaturaliza el adn. (s. f.). https://aleph.org.mx/como-se-desnaturaliza-el-adn
@@ -163,9 +158,3 @@ for (chunk in chunks) {
 - Lololo. (2024, 10 febrero). Bacterias gram positivas: el impacto del alto contenido de GC - Coinref.es. Coinref.es. https://coinref.es/bacterias-gram-positivas-con-alto-contenido-de-gc/
 - Escherichia coli str. K-12 substr. MG1655, complete genome - Nucleotide - NCBI. (n.d.). https://www.ncbi.nlm.nih.gov/nuccore
 - R: read FASTA formatted files. (n.d.). https://search.r-project.org/CRAN/refmans/seqinr/html/read.fasta.html
-```{r}
-dna2rna <- function(dna) {
-  rna <- chartr("T", "U", dna)
-  return(rna)
-}
-```
