@@ -110,7 +110,6 @@ cInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["C"]
 aInDENGUE <- nucleotide_compositions[["DENGUE"]]["A"]
 gInDENGUE <- nucleotide_compositions[["DENGUE"]]["G"]
 tInDENGUE <- nucleotide_compositions[["DENGUE"]]["T"]
-
 cInDENGUE <- nucleotide_compositions[["DENGUE"]]["C"]
 
 ```
