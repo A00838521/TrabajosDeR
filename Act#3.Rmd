@@ -1,5 +1,5 @@
 ---
-title: "act#3"
+title: "viruses_database"
 output: html_document
 date: "2024-04-22"
 ---
@@ -22,25 +22,64 @@ Para influenza utiliza el buscador:
 https://www.ncbi.nlm.nih.gov/genomes/FLU/Database/nph-select.cgi?go=database
 
 
-
-
+Read files
+```{r}
+ZIKA <-read.fasta(file="src/Zika.fasta",  as.string = TRUE)
+SARS<-read.fasta(file="src/SARS.fasta", as.string = TRUE)
+WUHAN <-read.fasta(file="src/Wuhan.fasta",  as.string = TRUE)
+MIDDLE<-read.fasta(file="src/Middle.fasta", as.string = TRUE)
+DENGUE<-read.fasta(file="src/Dengue.fasta", as.string = TRUE)
+```
 
 1. ¿Cuál es el tamaño de cada secuencia?
 
-
 ```{r}
+library(Biostrings)
+library(stringi)
+library(seqinr)
+
+sizeZIKA<-stri_length(ZIKA)
+sizeSARS<-stri_length(SARS)
+sizeWUHAN<-stri_length(WUHAN)
+sizeMIDDLE<-stri_length(MIDDLE)
+sizeDENGUE<-stri_length(DENGUE)
 
 ```
 
 2. ¿Cuál es la composición de nucleótidos de cada secuencia? (puedes usar conteo, proporción o
 porcentaje)
+
+```{r}
+
+ZIKA <-read.fasta(file="src/Zika.fasta",  as.string = TRUE)
+sizeZIKA<-stri_length(ZIKA)
+c("EL tamaño de secuencia es: ", sizeZIKA)
+```
+
 3. ¿Cuál es el %GC?
+
+```{r}
+ZIKA <-read.fasta(file="src/Zika.fasta",  as.string = TRUE)
+sizeZIKA<-stri_length(ZIKA)
+c("EL tamaño de secuencia es: ", sizeZIKA)
+```
 4. Crear una función para mostrar la hebra directa y la complementaria, recuerda que la
 complementaria es como en el siguiente ejemplo:
 Virus original: agttgttagt...
 Complementaria: tcaacaatca...
 Nota: Ya que se estará trabajando con secuencias con miles de nucleótidos, favor de utilizar las
 funciones head() y tail() para sólo mostrar en el output de 30 a 100 nucleótidos.
+
+
+```{r}
+library(Biostrings)
+library(stringi)
+library(seqinr)
+
+ZIKA <-read.fasta(file="src/Zika.fasta",  as.string = TRUE)
+sizeZIKA<-stri_length(ZIKA)
+c("EL tamaño de secuencia es: ", sizeZIKA)
+```
 5. Crear una gráfica en R, utilizando funciones como plot() o barplot(), donde se muestren las
 composiciones de nucleótidos
 
@@ -51,8 +90,13 @@ composiciones de nucleótidos
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+genomes<-c('Zika virus,', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1')
+size<-c(sizeZIKA, sizeSARS, sizeWUHAN, sizeMIDDLE, sizeDENGUE )
+
+df <- data.frame(genomes, size)
+
+print(df)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
