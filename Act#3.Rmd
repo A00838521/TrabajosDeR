@@ -4,9 +4,6 @@ output: html_document
 date: "2024-04-22"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 Instrucciones: Realiza los siguientes ejercicios en R Studio y comparte tu script con la solución de
 todos:
 Dentro de NCBI busca las secuencias de las siguientes entidades:
@@ -30,6 +27,15 @@ SARS<-read.fasta(file="src/SARS.fasta", as.string = TRUE)
 WUHAN <-read.fasta(file="src/Wuhan.fasta",  as.string = TRUE)
 MIDDLE<-read.fasta(file="src/Middle.fasta", as.string = TRUE)
 DENGUE<-read.fasta(file="src/Dengue.fasta", as.string = TRUE)
+H1N185<-read.fasta(file="src/85.fasta", as.string = TRUE)
+H1N186<-read.fasta(file="src/86.fasta", as.string = TRUE)
+H1N187<-read.fasta(file="src/87.fasta", as.string = TRUE)
+H1N188<-read.fasta(file="src/88.fasta", as.string = TRUE)
+H1N189<-read.fasta(file="src/89.fasta", as.string = TRUE)
+H1N190<-read.fasta(file="src/90.fasta", as.string = TRUE)
+H1N191<-read.fasta(file="src/91.fasta", as.string = TRUE)
+H1N192<-read.fasta(file="src/92.fasta", as.string = TRUE)
+
 ```
 
 1. ¿Cuál es el tamaño de cada secuencia?
@@ -39,11 +45,28 @@ library(Biostrings)
 library(stringi)
 library(seqinr)
 
+ZIKA <-unlist(read.fasta(file="src/Zika.fasta",  as.string = TRUE))
+SARS<-unlist(read.fasta(file="src/SARS.fasta", as.string = TRUE))
+WUHAN <-unlist(read.fasta(file="src/Wuhan.fasta",  as.string = TRUE))
+MIDDLE<-unlist(read.fasta(file="src/Middle.fasta", as.string = TRUE))
+DENGUE<-unlist(read.fasta(file="src/Dengue.fasta", as.string = TRUE))
+```
+
+1. ¿Cuál es el tamaño de cada secuencia?
+```{r}
 sizeZIKA<-stri_length(ZIKA)
 sizeSARS<-stri_length(SARS)
 sizeWUHAN<-stri_length(WUHAN)
 sizeMIDDLE<-stri_length(MIDDLE)
 sizeDENGUE<-stri_length(DENGUE)
+sizeH1N185<-stri_length(H1N185)
+sizeH1N186<-stri_length(H1N186)
+sizeH1N187<-stri_length(H1N187)
+sizeH1N188<-stri_length(H1N188)
+sizeH1N189<-stri_length(H1N189)
+sizeH1N190<-stri_length(H1N190)
+sizeH1N191<-stri_length(H1N191)
+sizeH1N192<-stri_length(H1N192)
 
 ```
 
@@ -51,13 +74,50 @@ sizeDENGUE<-stri_length(DENGUE)
 porcentaje)
 
 ```{r}
+calculate_nucleotide_composition <- function(sequence) {
+  dna_sequence <- DNAString(sequence)
+  nucleotide_count <- letterFrequency(dna_sequence, letters=c("A", "G", "T", "C"))
+  nucleotide_percentage <- nucleotide_count / sum(nucleotide_count) * 100
+  result <- nucleotide_percentage
+  return(result)
+}
+
+sequences <- list(ZIKA = ZIKA, SARS = SARS, WUHAN = WUHAN, MIDDLE = MIDDLE, DENGUE = DENGUE)
+nucleotide_compositions <- lapply(sequences, calculate_nucleotide_composition)
+
+
+aInZIKA <- nucleotide_compositions[["ZIKA"]]["A"]
+gInZIKA <- nucleotide_compositions[["ZIKA"]]["G"]
+tInZIKA <- nucleotide_compositions[["ZIKA"]]["T"]
+cInZIKA <- nucleotide_compositions[["ZIKA"]]["C"]
+
+aInSARS <- nucleotide_compositions[["SARS"]]["A"]
+gInSARS <- nucleotide_compositions[["SARS"]]["G"]
+tInSARS <- nucleotide_compositions[["SARS"]]["T"]
+cInSARS <- nucleotide_compositions[["SARS"]]["C"]
+
+aInWUHAN <- nucleotide_compositions[["WUHAN"]]["A"]
+gInWUHAN <- nucleotide_compositions[["WUHAN"]]["G"]
+tInWUHAN <- nucleotide_compositions[["WUHAN"]]["T"]
+cInWUHAN <- nucleotide_compositions[["WUHAN"]]["C"]
+
+
+aInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["A"]
+gInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["G"]
+tInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["T"]
+cInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["C"]
+
+aInDENGUE <- nucleotide_compositions[["DENGUE"]]["A"]
+gInDENGUE <- nucleotide_compositions[["DENGUE"]]["G"]
+tInDENGUE <- nucleotide_compositions[["DENGUE"]]["T"]
+
+cInDENGUE <- nucleotide_compositions[["DENGUE"]]["C"]
 
 ```
 
 3. ¿Cuál es el %GC?
 
 ```{r}
-
 ```
 4. Crear una función para mostrar la hebra directa y la complementaria, recuerda que la
 complementaria es como en el siguiente ejemplo:
@@ -68,9 +128,6 @@ funciones head() y tail() para sólo mostrar en el output de 30 a 100 nucleótid
 
 
 ```{r}
-library(Biostrings)
-library(stringi)
-library(seqinr)
 
 ZIKA <-read.fasta(file="src/Zika.fasta",  as.string = TRUE)
 sizeZIKA<-stri_length(ZIKA)
@@ -89,8 +146,11 @@ You can also embed plots, for example:
 ```{r}
 genomes<-c('Zika virus,', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1')
 size<-c(sizeZIKA, sizeSARS, sizeWUHAN, sizeMIDDLE, sizeDENGUE )
-
-df <- data.frame(genomes, size)
+a<-c(aInZIKA, aInSARS, aInWUHAN, aInMIDDLE, aInDENGUE)
+c<-c(cInZIKA, cInSARS, cInWUHAN, cInMIDDLE, cInDENGUE)
+g<-c(gInZIKA, gInSARS, gInWUHAN, gInMIDDLE, gInDENGUE)
+t<-c(tInZIKA, tInSARS, tInWUHAN, tInMIDDLE, tInDENGUE)
+df <- data.frame(genomes, size,a,c,g,t)
 
 print(df)
 ```
