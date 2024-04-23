@@ -21,11 +21,11 @@ https://www.ncbi.nlm.nih.gov/genomes/FLU/Database/nph-select.cgi?go=database
 
 Read files
 ```{r}
-ZIKA <-read.fasta(file="src/Zika.fasta",  as.string = TRUE)
-SARS<-read.fasta(file="src/SARS.fasta", as.string = TRUE)
-WUHAN <-read.fasta(file="src/Wuhan.fasta",  as.string = TRUE)
-MIDDLE<-read.fasta(file="src/Middle.fasta", as.string = TRUE)
-DENGUE<-read.fasta(file="src/Dengue.fasta", as.string = TRUE)
+ZIKA <-unlist(read.fasta(file="src/Zika.fasta",  as.string = TRUE))
+SARS<-unlist(read.fasta(file="src/SARS.fasta", as.string = TRUE))
+WUHAN <-unlist(read.fasta(file="src/Wuhan.fasta",  as.string = TRUE))
+MIDDLE<-unlist(read.fasta(file="src/Middle.fasta", as.string = TRUE))
+DENGUE<-unlist(read.fasta(file="src/Dengue.fasta", as.string = TRUE))
 ```
 
 1. ¿Cuál es el tamaño de cada secuencia?
@@ -46,13 +46,63 @@ sizeDENGUE<-stri_length(DENGUE)
 porcentaje)
 
 ```{r}
+calculate_nucleotide_composition <- function(sequence) {
+  dna_sequence <- DNAString(sequence)
+  nucleotide_count <- letterFrequency(dna_sequence, letters=c("A", "G", "T", "C"))
+  nucleotide_percentage <- nucleotide_count / sum(nucleotide_count) * 100
+  result <- nucleotide_percentage
+  return(result)
+}
+
+composition_ZIKA <- calculate_nucleotide_composition(ZIKA)
+composition_SARS <- calculate_nucleotide_composition(SARS)
+composition_WUHAN <- calculate_nucleotide_composition(WUHAN)
+composition_MIDDLE <- calculate_nucleotide_composition(MIDDLE)
+composition_DENGUE <- calculate_nucleotide_composition(DENGUE)
+
+
 
 ```
 
 3. ¿Cuál es el %GC?
 
 ```{r}
+calculate_nucleotide_composition <- function(sequence) {
+  dna_sequence <- DNAString(sequence)
+  nucleotide_count <- letterFrequency(dna_sequence, letters=c("A", "G", "T", "C"))
+  nucleotide_percentage <- nucleotide_count / sum(nucleotide_count) * 100
+  result <- nucleotide_percentage
+  return(result)
+}
 
+sequences <- list(ZIKA = ZIKA, SARS = SARS, WUHAN = WUHAN, MIDDLE = MIDDLE, DENGUE = DENGUE)
+nucleotide_compositions <- lapply(sequences, calculate_nucleotide_composition)
+
+
+aInZIKA <- nucleotide_compositions[["ZIKA"]]["A"]
+gInZIKA <- nucleotide_compositions[["ZIKA"]]["G"]
+tInZIKA <- nucleotide_compositions[["ZIKA"]]["T"]
+cInZIKA <- nucleotide_compositions[["ZIKA"]]["C"]
+
+aInSARS <- nucleotide_compositions[["SARS"]]["A"]
+gInSARS <- nucleotide_compositions[["SARS"]]["G"]
+tInSARS <- nucleotide_compositions[["SARS"]]["T"]
+cInSARS <- nucleotide_compositions[["SARS"]]["C"]
+
+aInWUHAN <- nucleotide_compositions[["WUHAN"]]["A"]
+gInWUHAN <- nucleotide_compositions[["WUHAN"]]["G"]
+tInWUHAN <- nucleotide_compositions[["WUHAN"]]["T"]
+cInWUHAN <- nucleotide_compositions[["WUHAN"]]["C"]
+
+aInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["A"]
+gInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["G"]
+tInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["T"]
+cInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["C"]
+
+aInDENGUE <- nucleotide_compositions[["DENGUE"]]["A"]
+gInDENGUE <- nucleotide_compositions[["DENGUE"]]["G"]
+tInDENGUE <- nucleotide_compositions[["DENGUE"]]["T"]
+cInDENGUE <- nucleotide_compositions[["DENGUE"]]["C"]
 ```
 4. Crear una función para mostrar la hebra directa y la complementaria, recuerda que la
 complementaria es como en el siguiente ejemplo:
@@ -78,8 +128,11 @@ You can also embed plots, for example:
 ```{r}
 genomes<-c('Zika virus,', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1')
 size<-c(sizeZIKA, sizeSARS, sizeWUHAN, sizeMIDDLE, sizeDENGUE )
-
-df <- data.frame(genomes, size)
+a<-c(aInZIKA, aInSARS, aInWUHAN, aInMIDDLE, aInDENGUE)
+c<-c(cInZIKA, cInSARS, cInWUHAN, cInMIDDLE, cInDENGUE)
+g<-c(gInZIKA, gInSARS, gInWUHAN, gInMIDDLE, gInDENGUE)
+t<-c(tInZIKA, tInSARS, tInWUHAN, tInMIDDLE, tInDENGUE)
+df <- data.frame(genomes, size,a,c,g,t)
 
 print(df)
 ```
