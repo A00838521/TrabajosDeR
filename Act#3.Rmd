@@ -39,20 +39,6 @@ H1N192<-read.fasta(file="src/92.fasta", as.string = TRUE)
 ```
 
 1. ¿Cuál es el tamaño de cada secuencia?
-
-```{r}
-library(Biostrings)
-library(stringi)
-library(seqinr)
-
-ZIKA <-unlist(read.fasta(file="src/Zika.fasta",  as.string = TRUE))
-SARS<-unlist(read.fasta(file="src/SARS.fasta", as.string = TRUE))
-WUHAN <-unlist(read.fasta(file="src/Wuhan.fasta",  as.string = TRUE))
-MIDDLE<-unlist(read.fasta(file="src/Middle.fasta", as.string = TRUE))
-DENGUE<-unlist(read.fasta(file="src/Dengue.fasta", as.string = TRUE))
-```
-
-1. ¿Cuál es el tamaño de cada secuencia?
 ```{r}
 sizeZIKA<-stri_length(ZIKA)
 sizeSARS<-stri_length(SARS)
