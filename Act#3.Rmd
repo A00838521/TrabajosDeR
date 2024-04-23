@@ -30,6 +30,14 @@ SARS<-unlist(read.fasta(file="src/SARS.fasta", as.string = TRUE))
 WUHAN <-unlist(read.fasta(file="src/Wuhan.fasta",  as.string = TRUE))
 MIDDLE<-unlist(read.fasta(file="src/Middle.fasta", as.string = TRUE))
 DENGUE<-unlist(read.fasta(file="src/Dengue.fasta", as.string = TRUE))
+HINI85<-unlist(read.fasta(file="src/85.fasta", as.string = TRUE))
+HINI86<-unlist(read.fasta(file="src/86.fasta", as.string = TRUE))
+HINI87<-unlist(read.fasta(file="src/87.fasta", as.string = TRUE))
+HINI88<-unlist(read.fasta(file="src/88.fasta", as.string = TRUE))
+HINI89<-unlist(read.fasta(file="src/89.fasta", as.string = TRUE))
+HINI90<-unlist(read.fasta(file="src/90.fasta", as.string = TRUE))
+HINI91<-unlist(read.fasta(file="src/91.fasta", as.string = TRUE))
+HINI92<-unlist(read.fasta(file="src/92.fasta", as.string = TRUE))
 ```
 
 1. ¿Cuál es el tamaño de cada secuencia?
@@ -39,7 +47,13 @@ sizeSARS<-stri_length(SARS)
 sizeWUHAN<-stri_length(WUHAN)
 sizeMIDDLE<-stri_length(MIDDLE)
 sizeDENGUE<-stri_length(DENGUE)
-
+sizeHINI85<-stri_length(HINI85)
+sizeHINI86<-stri_length(HINI86)
+sizeHINI87<-stri_length(HINI87)
+sizeHINI88<-stri_length(HINI88)
+sizeHINI89<-stri_length(HINI89)
+sizeHINI90<-stri_length(HINI90)
+sizeHINI91<-stri_length(HINI91)
 ```
 
 2. ¿Cuál es la composición de nucleótidos de cada secuencia? (puedes usar conteo, proporción o
@@ -112,8 +126,8 @@ composiciones de nucleótidos
 You can also embed plots, for example:
 
 ```{r}
-genomes<-c('Zika virus,', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1')
-size<-c(sizeZIKA, sizeSARS, sizeWUHAN, sizeMIDDLE, sizeDENGUE )
+genomes<-c('Zika virus,', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1', 'H1N1 85', 'H1N1 86', 'H1N1 87', 'H1N1 88', 'H1N1 89', 'H1N1 90', 'H1N1 91', 'H1N1 92')
+size<-c(sizeZIKA, sizeSARS, sizeWUHAN, sizeMIDDLE, sizeDENGUE, sizeHINI85, sizeHINI86, sizeHINI87, sizeHINI88, sizeHINI89, sizeHINI90, sizeHINI91, sizeHINI92)
 a<-c(aInZIKA, aInSARS, aInWUHAN, aInMIDDLE, aInDENGUE)
 c<-c(cInZIKA, cInSARS, cInWUHAN, cInMIDDLE, cInDENGUE)
 g<-c(gInZIKA, gInSARS, gInWUHAN, gInMIDDLE, gInDENGUE)
