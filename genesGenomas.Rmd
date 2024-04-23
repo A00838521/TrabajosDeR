@@ -86,6 +86,7 @@ NCBI, EMBL, DDBJ, ENSEML, KEGG y OMIM. Algunas siendo originarias de paises pote
 #### Busca la secuencia de ADN de la Alcohol Deshidrogenasa de Escherichia coli (gen adhE) y obtengan la secuencia de nucleótidos.
 La secuencia de nucleótidos de la Alcohol Deshidrogenasa de Escherichia coli (gen adhE) es la siguiente:
 ```{r}
+library(stringr)
 library(seqinr)
 ruta <- paste0(getwd(), .Platform$file.sep, "data", .Platform$file.sep, "sequence.fasta")
 dna <-read.fasta("sequence.fasta")
@@ -94,8 +95,40 @@ sequence <- seqinr::read.fasta(file = paste0(getwd(),.Platform$file.sep,"transla
 seqinr::getSequence(sequence)
 c2s(chars=sequence)
 print(sequence)
+
+nucleotide_sequence <- function(sequence) {
+  countA <- 0
+  countT <- 0
+  countG <- 0
+  countC <- 0
+  
+  for (i in sequence) { 
+    if (toupper(i) == "A") {
+      countA <- countA + 1
+    } else if (toupper(i) == "T") {
+      countT <- countT + 1
+    } else if (toupper(i) == "G") {
+      countG <- countG + 1
+    } else if (toupper(i) == "C") {
+      countC <- countC + 1
+    }
+  }
+  
+  cat("A:", countA, "T:", countT, "G:", countG, "C:", countC, "\n")
+}
+
+# Split the sequence into smaller chunks
+chunk_size <- 10
+chunks <- strsplit(sequence, "")
+for (chunk in chunks) {
+  nucleotide_sequence(chunk)
+}
+
 ```
 
+
+
+```
 
 ### Referencias:
 - Mira, P. J. (2021, 7 febrero). Desnaturalización: Definición, tipos funciones y ejemplos - El Gen Curioso. El Gen Curioso. https://www.elgencurioso.com/diccionario/desnaturalizacion/
