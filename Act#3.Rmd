@@ -255,8 +255,8 @@ print(df)
 You can also embed plots, for example:
 
 ```{r}
-genomes<-c('Zika virus,', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1')
-size<-c(sizeZIKA, sizeSARS, sizeWUHAN, sizeMIDDLE, sizeDENGUE )
+genomes<-c('Zika virus,', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1', 'H1N185', 'H1N186', 'H1N187', 'H1N188', 'H1N189', 'H1N190', 'H1N191', 'H1N192')
+size<-c(sizeZIKA, sizeSARS, sizeWUHAN, sizeMIDDLE, sizeDENGUE, sizeH1N185, sizeH1N186,  sizeH1N187,sizeH1N188,sizeH1N189, sizeH1N190, sizeH1N191, sizeH1N192 )
 a<-c(aInZIKA, aInSARS, aInWUHAN, aInMIDDLE, aInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
 c<-c(cInZIKA, cInSARS, cInWUHAN, cInMIDDLE, cInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
 g<-c(gInZIKA, gInSARS, gInWUHAN, gInMIDDLE, gInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
