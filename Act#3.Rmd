@@ -68,7 +68,7 @@ calculate_nucleotide_composition <- function(sequence) {
   return(result)
 }
 
-sequences <- list(ZIKA, SARS, WUHAN, MIDDLE, DENGUE)
+sequences <- list(ZIKA = ZIKA, SARS = SARS, WUHAN = WUHAN, MIDDLE = MIDDLE, DENGUE = DENGUE, H1N185=H1N185, H1N186=H1N186, H1N187=H1N187, H1N188 = H1N188, H1N189=H1N189, H1N190=H1N190, H1N191=H1N191, H1N192=H1N192)
 nucleotide_compositions <- lapply(sequences, calculate_nucleotide_composition)
 
 aInZIKA <- nucleotide_compositions[["ZIKA"]]["A"]
@@ -172,6 +172,8 @@ funciones head() y tail() para sólo mostrar en el output de 30 a 100 nucleótid
 
 
 ```{r}
+complementary<-function()
+  
 head(ZIKA, 30)
 tail(ZIKA, 100)
 
@@ -217,7 +219,12 @@ complementaria <- function(sequence) {
   result <- complement
   return(result)
 }
-
+DNA<-function(sequence){
+  dna_sequence <- DNAString(sequence)
+  return(dna_sequence)
+}
+directZIKA<-head(DNA(ZIKA),30)
+complementZIKA<-complementaria(ZIKA)
 complement_MIDDLE <- complementaria(MIDDLE)
 complement_DENGUE <- complementaria(DENGUE)
 complement_H1N185 <- complementaria(H1N185)
@@ -229,15 +236,6 @@ complement_H1N190 <- complementaria(H1N190)
 complement_H1N191 <- complementaria(H1N191)
 complement_H1N192 <- complementaria(H1N192)
 
-print(df)
-
-dfm <- melt(df, id.vars = "genomes")
-ggplot(dfm, aes(x = genomes, y = value, fill = variable)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Composición de nucleótidos en diferentes genomas",
-       x = "Genomas",
-       y = "Porcentaje") +
-  theme_minimal()
 ```
 
 
@@ -255,11 +253,13 @@ You can also embed plots, for example:
 genomes<-c('Zika virus', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1', 'H1N185', 'H1N186', 'H1N187', 'H1N188', 'H1N189', 'H1N190', 'H1N191', 'H1N192')
 size<-c(sizeZIKA, sizeSARS, sizeWUHAN, sizeMIDDLE, sizeDENGUE, sizeH1N185, sizeH1N186,  sizeH1N187,sizeH1N188,sizeH1N189, sizeH1N190, sizeH1N191, sizeH1N192)
 a<-c(aInZIKA, aInSARS, aInWUHAN, aInMIDDLE, aInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
-print(a)
 c<-c(cInZIKA, cInSARS, cInWUHAN, cInMIDDLE, cInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
 g<-c(gInZIKA, gInSARS, gInWUHAN, gInMIDDLE, gInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
 t<-c(tInZIKA, tInSARS, tInWUHAN, tInMIDDLE, tInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
-df <- data.frame(genomes,size,a)
+sequence<-c()
+complement<-c(complementZIKA, complementSARS, complementWUHAN, complementMIDDLE, complementDENGUE, complementH1N185, complementH1N186, complementH1N187, complementH1N188, complementH1N189,complementH1N190, complementH1N191, complementH1N192)
+
+df <- data.frame(genomes,size,a,c,g,t)
 
 print(df)
 ```
