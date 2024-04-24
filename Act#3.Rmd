@@ -4,139 +4,6 @@ output: html_document
 date: "2024-04-22"
 ---
 
-Instrucciones: Realiza los siguientes ejercicios en R Studio y comparte tu script con la solución de
-todos:
-Dentro de NCBI busca las secuencias de las siguientes entidades:
-• Zika virus, complete genome
-• SARS coronavirus, complete genome
-• Wuhan seafood market pneumonia virus isolate Wuhan-Hu-1, complete genome
-• Middle East respiratory syndrome coronavirus, complete genome
-• Dengue virus 1, complete genome
-Para estos virus puedes utilizar: https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/
-Además, busca las secuencias de H1N1 que apareció en México en 2009 y obtén todos los
-segmentos del virus:
-Para influenza utiliza el buscador:
-https://www.ncbi.nlm.nih.gov/genomes/FLU/Database/nph-select.cgi?go=database
-
-
-Read files
-```{r}
-library(Biostrings)
-library(stringi)
-library(seqinr)
-
-ZIKA <-unlist(read.fasta(file="src/Zika.fasta",  as.string = TRUE))
-SARS<-unlist(read.fasta(file="src/SARS.fasta", as.string = TRUE))
-WUHAN <-unlist(read.fasta(file="src/Wuhan.fasta",  as.string = TRUE))
-MIDDLE<-unlist(read.fasta(file="src/Middle.fasta", as.string = TRUE))
-DENGUE<-unlist(read.fasta(file="src/Dengue.fasta", as.string = TRUE))
-H1N185<-unlist(read.fasta(file="src/85.fasta", as.string = TRUE))
-H1N186<-unlist(read.fasta(file="src/86.fasta", as.string = TRUE))
-H1N187<-unlist(read.fasta(file="src/87.fasta", as.string = TRUE))
-H1N188<-unlist(read.fasta(file="src/88.fasta", as.string = TRUE))
-H1N189<-unlist(read.fasta(file="src/89.fasta", as.string = TRUE))
-H1N190<-unlist(read.fasta(file="src/90.fasta", as.string = TRUE))
-H1N191<-unlist(read.fasta(file="src/91.fasta", as.string = TRUE))
-H1N192<-unlist(read.fasta(file="src/92.fasta", as.string = TRUE))
-```
-
-1. ¿Cuál es el tamaño de cada secuencia?
-```{r}
-sizeZIKA <- stri_length(ZIKA)
-sizeSARS <- stri_length(SARS)
-sizeWUHAN <- stri_length(WUHAN)
-sizeMIDDLE <- stri_length(MIDDLE)
-sizeDENGUE <- stri_length(DENGUE)
-sizeH1N185 <- stri_length(H1N185)
-sizeH1N186 <- stri_length(H1N186)
-sizeH1N187 <- stri_length(H1N187)
-sizeH1N188 <- stri_length(H1N188)
-sizeH1N189 <- stri_length(H1N189)
-sizeH1N190 <- stri_length(H1N190)
-sizeH1N191 <- stri_length(H1N191)
-sizeH1N192 <- stri_length(H1N192)
-```
-
-2. ¿Cuál es la composición de nucleótidos de cada secuencia? (puedes usar conteo, proporción o
-porcentaje)
-```{r}
-calculate_nucleotide_composition <- function(sequence) {
-  dna_sequence <- DNAString(sequence)
-  nucleotide_count <- letterFrequency(dna_sequence, letters=c("A", "G", "T", "C"))
-  nucleotide_percentage <- nucleotide_count / sum(nucleotide_count) * 100
-  result <- nucleotide_percentage
-  return(result)
-}
-
-sequences <- list(ZIKA = ZIKA, SARS = SARS, WUHAN = WUHAN, MIDDLE = MIDDLE, DENGUE = DENGUE, H1N185=H1N185, H1N186=H1N186, H1N187=H1N187, H1N188 = H1N188, H1N189=H1N189, H1N190=H1N190, H1N191=H1N191, H1N192=H1N192)
-nucleotide_compositions <- lapply(sequences, calculate_nucleotide_composition)
-
-aInZIKA <- nucleotide_compositions[["ZIKA"]]["A"]
-gInZIKA <- nucleotide_compositions[["ZIKA"]]["G"]
-tInZIKA <- nucleotide_compositions[["ZIKA"]]["T"]
-cInZIKA <- nucleotide_compositions[["ZIKA"]]["C"]
-
-aInSARS <- nucleotide_compositions[["SARS"]]["A"]
-gInSARS <- nucleotide_compositions[["SARS"]]["G"]
-tInSARS <- nucleotide_compositions[["SARS"]]["T"]
-cInSARS <- nucleotide_compositions[["SARS"]]["C"]
-
-aInWUHAN <- nucleotide_compositions[["WUHAN"]]["A"]
-gInWUHAN <- nucleotide_compositions[["WUHAN"]]["G"]
-tInWUHAN <- nucleotide_compositions[["WUHAN"]]["T"]
-cInWUHAN <- nucleotide_compositions[["WUHAN"]]["C"]
-
-aInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["A"]
-gInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["G"]
-tInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["T"]
-cInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["C"]
-
-aInDENGUE <- nucleotide_compositions[["DENGUE"]]["A"]
-gInDENGUE <- nucleotide_compositions[["DENGUE"]]["G"]
-tInDENGUE <- nucleotide_compositions[["DENGUE"]]["T"]
-cInDENGUE <- nucleotide_compositions[["DENGUE"]]["C"]
-
-aInH1N185 <- nucleotide_compositions[["H1N185"]]["A"]
-gInH1N185 <- nucleotide_compositions[["H1N185"]]["G"]
-tInH1N185 <- nucleotide_compositions[["H1N185"]]["T"]
-cInH1N185 <- nucleotide_compositions[["H1N185"]]["C"]
-
-aInH1N186 <- nucleotide_compositions[["H1N186"]]["A"]
-gInH1N186 <- nucleotide_compositions[["H1N186"]]["G"]
-tInH1N186 <- nucleotide_compositions[["H1N186"]]["T"]
-cInH1N186 <- nucleotide_compositions[["H1N186"]]["C"]
-
-aInH1N187 <- nucleotide_compositions[["H1N187"]]["A"]
-gInH1N187 <- nucleotide_compositions[["H1N187"]]["G"]
-tInH1N187 <- nucleotide_compositions[["H1N187"]]["T"]
-cInH1N187 <- nucleotide_compositions[["H1N187"]]["C"]
-
-aInH1N188 <- nucleotide_compositions[["H1N188"]]["A"]
-gInH1N188 <- nucleotide_compositions[["H1N188"]]["G"]
-tInH1N188 <- nucleotide_compositions[["H1N188"]]["T"]
-cInH1N188 <- nucleotide_compositions[["H1N188"]]["C"]
-
-aInH1N189 <- nucleotide_compositions[["H1N189"]]["A"]
-gInH1N189 <- nucleotide_compositions[["H1N189"]]["G"]
-tInH1N189 <- nucleotide_compositions[["H1N189"]]["T"]
-cInH1N189 <- nucleotide_compositions[["H1N189"]]["C"]
-
-aInH1N190 <- nucleotide_compositions[["H1N190"]]["A"]
-gInH1N190 <- nucleotide_compositions[["H1N190"]]["G"]
-tInH1N190 <- nucleotide_compositions[["H1N190"]]["T"]
-cInH1N190 <- nucleotide_compositions[["H1N190"]]["C"]
-
-aInH1N191 <- nucleotide_compositions[["H1N191"]]["A"]
-gInH1N191 <- nucleotide_compositions[["H1N191"]]["G"]
-tInH1N191 <- nucleotide_compositions[["H1N191"]]["T"]
-cInH1N191 <- nucleotide_compositions[["H1N191"]]["C"]
-
-aInH1N192 <- nucleotide_compositions[["H1N192"]]["A"]
-gInH1N192 <- nucleotide_compositions[["H1N192"]]["G"]
-tInH1N192 <- nucleotide_compositions[["H1N192"]]["T"]
-cInH1N192 <- nucleotide_compositions[["H1N192"]]["C"]
-
-```
 3. ¿Cuál es el %GC?
 ```{r}
 calculate_gc_content <- function(sequence) {
@@ -172,47 +39,6 @@ funciones head() y tail() para sólo mostrar en el output de 30 a 100 nucleótid
 
 
 ```{r}
-complementary<-function()
-  
-head(ZIKA, 30)
-tail(ZIKA, 100)
-
-head(SARS, 30)
-tail(SARS, 100)
-
-head(WUHAN, 30)
-tail(WUHAN, 100)
-
-head(MIDDLE, 30)
-tail(MIDDLE, 100)
-
-head(DENGUE, 30)
-tail(DENGUE, 100)
-
-head(H1N185, 30)
-tail(H1N185, 100)
-
-head(H1N186, 30)
-tail(H1N186, 100)
-
-head(H1N187, 30)
-tail(H1N187, 100)
-
-head(H1N188, 30)
-tail(H1N188, 100)
-
-head(H1N189, 30)
-tail(H1N189, 100)
-
-head(H1N190, 30)
-tail(H1N190, 100)
-
-head(H1N191, 30)
-tail(H1N191, 100)
-
-head(H1N192, 30)
-tail(H1N192, 100)
-
 complementaria <- function(sequence) {
   dna_sequence <- DNAString(sequence)
   complement <- reverseComplement(dna_sequence)
@@ -224,7 +50,9 @@ DNA<-function(sequence){
   return(dna_sequence)
 }
 directZIKA<-head(DNA(ZIKA),30)
+print(directZIKA)
 complementZIKA<-complementaria(ZIKA)
+print(complementZIKA)
 complement_MIDDLE <- complementaria(MIDDLE)
 complement_DENGUE <- complementaria(DENGUE)
 complement_H1N185 <- complementaria(H1N185)

@@ -178,6 +178,34 @@ Nota: Ya que se estará trabajando con secuencias con miles de nucleótidos, fav
 
 ```{r}
 
+complementary_strandF <- function(direct_strand) {
+  complementary_strand <- gsub("t", "A", direct_strand)
+  complementary_strand <- gsub("g", "C", complementary_strand)
+  complementary_strand <- gsub("c", "G", complementary_strand)
+  complementary_strand <- gsub("a", "T", complementary_strand)
+  complementary_strand <- tolower(complementary_strand)
+  return(complementary_strand)
+}
+
+secuencias <- function(strand) {
+  iStrand = substr(strand, start = 1, stop = 30)
+  fStrand = substr(strand, start = nchar(strand) - 29, stop = nchar(strand))
+  icStrand = complementary_strandF(iStrand)
+  fcStrand = complementary_strandF(fStrand)
+}
+secuencias(ZIKA)
+secuencias(SARS)
+secuencias(WUHAN)
+secuencias(MIDDLE)
+secuencias(DENGUE)
+secuencias(H1N185)
+secuencias(H1N186)
+secuencias(H1N187)
+secuencias(H1N188)
+secuencias(H1N189)
+secuencias(H1N190)
+secuencias(H1N191)
+secuencias(H1N192)
 
 ```
 5. Crear una gráfica en R, utilizando funciones como plot() o barplot(), donde se muestren las
