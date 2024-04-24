@@ -1,11 +1,11 @@
 ---
 title: "viruses_database"
+author: "Bruno Vázquez Espinoza - A00838521 y Cyrce Danae Salinas Rojas - A01666121"
+date: "2024-04-24"
 output: html_document
-date: "2024-04-22"
 ---
 
-Instrucciones: Realiza los siguientes ejercicios en R Studio y comparte tu script con la solución de
-todos:
+<!-- Instrucciones: Realiza los siguientes ejercicios en R Studio y comparte tu script con la solución de todos:
 Dentro de NCBI busca las secuencias de las siguientes entidades:
 • Zika virus, complete genome
 • SARS coronavirus, complete genome
@@ -19,18 +19,15 @@ Para influenza utiliza el buscador:
 https://www.ncbi.nlm.nih.gov/genomes/FLU/Database/nph-select.cgi?go=database
 
 
-Read files
-```{r}
-if (!require(Biostrings)) {
-    if (!requireNamespace("BiocManager", quietly = TRUE))
-        install.packages("BiocManager")
-    BiocManager::install("Biostrings")
-}
+Read files -->
+```{r,echo=FALSE}
 library(Biostrings)
-install.packages("seqinr")
+library(stringi)
 library(seqinr)
+library(ggplot2)
+
 ZIKA <-unlist(read.fasta(file="src/Zika.fasta",  as.string = TRUE))
-SARS <-unlist(read.fasta(file="src/SARS.fasta", as.string = TRUE))
+SARS<-unlist(read.fasta(file="src/SARS.fasta", as.string = TRUE))
 WUHAN <-unlist(read.fasta(file="src/Wuhan.fasta",  as.string = TRUE))
 MIDDLE<-unlist(read.fasta(file="src/Middle.fasta", as.string = TRUE))
 DENGUE<-unlist(read.fasta(file="src/Dengue.fasta", as.string = TRUE))
@@ -44,8 +41,8 @@ H1N191<-unlist(read.fasta(file="src/91.fasta", as.string = TRUE))
 H1N192<-unlist(read.fasta(file="src/92.fasta", as.string = TRUE))
 ```
 
-1. ¿Cuál es el tamaño de cada secuencia?
-```{r}
+<!-- 1. ¿Cuál es el tamaño de cada secuencia? -->
+```{r,echo=FALSE}
 sizeZIKA <- stri_length(ZIKA)
 sizeSARS <- stri_length(SARS)
 sizeWUHAN <- stri_length(WUHAN)
@@ -60,10 +57,10 @@ sizeH1N190 <- stri_length(H1N190)
 sizeH1N191 <- stri_length(H1N191)
 sizeH1N192 <- stri_length(H1N192)
 ```
-
-2. ¿Cuál es la composición de nucleótidos de cada secuencia? (puedes usar conteo, proporción o
-porcentaje)
-```{r}
+<!-- 
+1. ¿Cuál es la composición de nucleótidos de cada secuencia? (puedes usar conteo, proporción o
+porcentaje) -->
+```{r,echo=FALSE}
 calculate_nucleotide_composition <- function(sequence) {
   dna_sequence <- DNAString(sequence)
   nucleotide_count <- letterFrequency(dna_sequence, letters=c("A", "G", "T", "C"))
@@ -72,7 +69,7 @@ calculate_nucleotide_composition <- function(sequence) {
   return(result)
 }
 
-sequences <- list(ZIKA = ZIKA, SARS = SARS, WUHAN = WUHAN, MIDDLE = MIDDLE, DENGUE = DENGUE, H1N185 = H1N185, H1N186 = H1N186, H1N187 = H1N187, H1N188 = H1N188, H1N189 = H1N189, H1N190 = H1N190, H1N191 = H1N191, H1N192 = H1N192)
+sequences <- list(ZIKA = ZIKA, SARS = SARS, WUHAN = WUHAN, MIDDLE = MIDDLE, DENGUE = DENGUE, H1N185=H1N185, H1N186=H1N186, H1N187=H1N187, H1N188 = H1N188, H1N189=H1N189, H1N190=H1N190, H1N191=H1N191, H1N192=H1N192)
 nucleotide_compositions <- lapply(sequences, calculate_nucleotide_composition)
 
 aInZIKA <- nucleotide_compositions[["ZIKA"]]["A"]
@@ -89,7 +86,6 @@ aInWUHAN <- nucleotide_compositions[["WUHAN"]]["A"]
 gInWUHAN <- nucleotide_compositions[["WUHAN"]]["G"]
 tInWUHAN <- nucleotide_compositions[["WUHAN"]]["T"]
 cInWUHAN <- nucleotide_compositions[["WUHAN"]]["C"]
-
 
 aInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["A"]
 gInMIDDLE <- nucleotide_compositions[["MIDDLE"]]["G"]
@@ -141,11 +137,9 @@ gInH1N192 <- nucleotide_compositions[["H1N192"]]["G"]
 tInH1N192 <- nucleotide_compositions[["H1N192"]]["T"]
 cInH1N192 <- nucleotide_compositions[["H1N192"]]["C"]
 
-
 ```
-3. ¿Cuál es el %GC?
-```{r}
-# Asegúrate de que 'calculate_gc_content' esté definido
+<!-- 3. ¿Cuál es el %GC? -->
+```{r,echo=FALSE}
 calculate_gc_content <- function(sequence) {
   dna_sequence <- DNAString(sequence)
   gc_count <- letterFrequency(dna_sequence, letters = c("G", "C"))
@@ -172,14 +166,12 @@ gcInH1N190 <- gc_content[["H1N190"]]
 gcInH1N191 <- gc_content[["H1N191"]]
 gcInH1N192 <- gc_content[["H1N192"]]
 ```
-4. Crear una función para mostrar la hebra directa y la complementaria, recuerda que la
-complementaria es como en el siguiente ejemplo:
+<!-- 4. Crear una función para mostrar la hebra directa y la complementaria, recuerda que la complementaria es como en el siguiente ejemplo:
 Virus original: agttgttagt...
 Complementaria: tcaacaatca...
-Nota: Ya que se estará trabajando con secuencias con miles de nucleótidos, favor de utilizar las
-funciones head() y tail() para sólo mostrar en el output de 30 a 100 nucleótidos.
+Nota: Ya que se estará trabajando con secuencias con miles de nucleótidos, favor de utilizar las funciones head() y tail() para sólo mostrar en el output de 30 a 100 nucleótidos. -->
 
-```{r}
+```{r,echo=FALSE}
 complementary_strandF <- function(direct_strand) {
   complementary_strand <- gsub("t", "A", direct_strand)
   complementary_strand <- gsub("g", "C", complementary_strand)
@@ -190,29 +182,44 @@ complementary_strandF <- function(direct_strand) {
 }
 
 secuencias <- function(strand) {
-  iStrand = substr(strand, start = 1, stop = 30)
-  fStrand = substr(strand, start = nchar(strand) - 29, stop = nchar(strand))
+  iStrand = substr(strand, start = 1, stop = 10)
+  fStrand = substr(strand, start = nchar(strand) - 9, stop = nchar(strand))
   icStrand = complementary_strandF(iStrand)
   fcStrand = complementary_strandF(fStrand)
+  return(paste(iStrand,"...",fStrand,"\n",icStrand,"...",fcStrand))
 }
-secuencias(ZIKA)
-secuencias(SARS)
-secuencias(WUHAN)
-secuencias(MIDDLE)
-secuencias(DENGUE)
-secuencias(H1N185)
-secuencias(H1N186)
-secuencias(H1N187)
-secuencias(H1N188)
-secuencias(H1N189)
-secuencias(H1N190)
-secuencias(H1N191)
-secuencias(H1N192)
+
+secZIKA <- secuencias(ZIKA)
+secSARS <- secuencias(SARS)
+secWUHAN <- secuencias(WUHAN)
+secMIDDLE <- secuencias(MIDDLE)
+secDENGUE <- secuencias(DENGUE)
+secH1N185 <- secuencias(H1N185)
+secH1N186 <- secuencias(H1N186)
+secH1N187 <- secuencias(H1N187)
+secH1N188 <- secuencias(H1N188)
+secH1N189 <- secuencias(H1N189)
+secH1N190 <- secuencias(H1N190)
+secH1N191 <- secuencias(H1N191)
+secH1N192 <- secuencias(H1N192)
 ```
 
+<!-- Crear un data frame con los resultados obtenidos. -->
+```{r}
+genomes<-c('Zika virus', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1', 'H1N185', 'H1N186', 'H1N187', 'H1N188', 'H1N189', 'H1N190', 'H1N191', 'H1N192')
+size<-c(sizeZIKA, sizeSARS, sizeWUHAN, sizeMIDDLE, sizeDENGUE, sizeH1N185, sizeH1N186,  sizeH1N187,sizeH1N188,sizeH1N189, sizeH1N190, sizeH1N191, sizeH1N192)
+a<-c(aInZIKA, aInSARS, aInWUHAN, aInMIDDLE, aInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
+c<-c(cInZIKA, cInSARS, cInWUHAN, cInMIDDLE, cInDENGUE, cInH1N185, cInH1N186, cInH1N187, cInH1N188, cInH1N189, cInH1N190, cInH1N191, cInH1N192)
+g<-c(gInZIKA, gInSARS, gInWUHAN, gInMIDDLE, gInDENGUE, gInH1N185, gInH1N186, gInH1N187, gInH1N188, gInH1N189, gInH1N190, gInH1N191, gInH1N192)
+t<-c(tInZIKA, tInSARS, tInWUHAN, tInMIDDLE, tInDENGUE, tInH1N185, tInH1N186, tInH1N187, tInH1N188, tInH1N189, tInH1N190, tInH1N191, tInH1N192)
+gc <- c(gcInZIKA, gcInSARS, gcInWUHAN, gcInMIDDLE, gcInDENGUE, gcInH1N185, gcInH1N186, gcInH1N187, gcInH1N188, gcInH1N189, gcInH1N190, gcInH1N191, gcInH1N192)
+secuencias <- c(secZIKA, secSARS, secWUHAN, secMIDDLE, secDENGUE, secH1N185, secH1N186, secH1N187, secH1N188, secH1N189, secH1N190, secH1N191, secH1N192)
+df <- data.frame(genomes,size,a,c,g,t,gc,secuencias)
+print(df)
+```
 
-1. Crear una gráfica en R, utilizando funciones como plot() o barplot(), donde se muestren las
-composiciones de nucleótidos.
+<!-- 5. Crear una gráfica en R, utilizando funciones como plot() o barplot(), donde se muestren las
+composiciones de nucleótidos. -->
 ```{r}
 pie(c(aInZIKA, cInZIKA, gInZIKA, tInZIKA), labels = c("A", "C", "G", "T"), main = "Zika virus")
 pie(c(aInSARS, cInSARS, gInSARS, tInSARS), labels = c("A", "C", "G", "T"), main = "SARS coronavirus")
@@ -227,20 +234,20 @@ pie(c(aInH1N189, cInH1N189, gInH1N189, tInH1N189), labels = c("A", "C", "G", "T"
 pie(c(aInH1N190, cInH1N190, gInH1N190, tInH1N190), labels = c("A", "C", "G", "T"), main = "H1N1_90")
 pie(c(aInH1N191, cInH1N191, gInH1N191, tInH1N191), labels = c("A", "C", "G", "T"), main = "H1N1_91")
 pie(c(aInH1N192, cInH1N192, gInH1N192, tInH1N192), labels = c("A", "C", "G", "T"), main = "H1N1_92")
+
+
+barplot(size, names.arg = genomes, las = 1, col = rainbow(13), main = "Tamaño de cada secuencia", ylab = "Tamaño", xlab = "Virus")
+
+color_fuerte <- "#FF4500"  
+color_intermedio1 <- "#FF7F50" 
+color_intermedio2 <- "#FFA07A" 
+color_tenue <- "#FFE4B5"
+
+heatmap(t(data.frame(a, c, g, t)), Rowv = NA, Colv = NA, 
+           xlab = "Nucleótidos", ylab = "Virus",
+           main = "Composición de Nucleótidos en los Virus",
+           col = colorRampPalette(c(color_tenue, color_intermedio1, color_intermedio2, color_fuerte))(100))
+
+
+
 ```
-
-You can also embed plots, for example:
-
-```{r}
-genomes<-c('Zika virus', 'SARS coronavirus', 'Wuhan-Hu-1', 'coronavirus', 'Dengue virus 1', 'H1N185', 'H1N186', 'H1N187', 'H1N188', 'H1N189', 'H1N190', 'H1N191', 'H1N192')
-size<-c(sizeZIKA, sizeSARS, sizeWUHAN, sizeMIDDLE, sizeDENGUE, sizeH1N185, sizeH1N186,  sizeH1N187,sizeH1N188,sizeH1N189, sizeH1N190, sizeH1N191, sizeH1N192 )
-a<-c(aInZIKA, aInSARS, aInWUHAN, aInMIDDLE, aInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
-c<-c(cInZIKA, cInSARS, cInWUHAN, cInMIDDLE, cInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
-g<-c(gInZIKA, gInSARS, gInWUHAN, gInMIDDLE, gInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
-t<-c(tInZIKA, tInSARS, tInWUHAN, tInMIDDLE, tInDENGUE, aInH1N185, aInH1N186, aInH1N187, aInH1N188, aInH1N189, aInH1N190, aInH1N191, aInH1N192)
-df <- data.frame(genomes, size)
-
-print(df)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
