@@ -178,36 +178,6 @@ Nota: Ya que se estará trabajando con secuencias con miles de nucleótidos, fav
 
 ```{r}
 
-library(purrr)
-mostrar_hebra_complementaria <- function(secuencia) {
-  if (!is.character(secuencia)) {
-    cat("Error: La secuencia no es un objeto de tipo 'character'.\n")
-    return(NULL)
-  }
-  
-  secuencia_directa <- toupper(secuencia)
-  complemento <- chartr("ATCGN", "TAGCN", secuencia_directa)
-  
-  cat("Hebra directa:\n")
-  cat(head(secuencia_directa, 100), "\n")
-  
-  cat("\nHebra complementaria:\n")
-  cat(head(complemento, 100), "\n")
-}
-
-directZIKA<-mostrar_hebra_complementaria(ZIKA)
-directSARS<-mostrar_hebra_complementaria(SARS)
-directWUHAN<-mostrar_hebra_complementaria(WUHAN)
-directMIDDLE<-mostrar_hebra_complementaria(MIDDLE)
-directDENGUE<-mostrar_hebra_complementaria(DENGUE)
-directH1N185<-mostrar_hebra_complementaria(H1N185)
-directH1N186<-mostrar_hebra_complementaria(H1N186)
-directH1N187<-mostrar_hebra_complementaria(H1N187)
-directH1N188<-mostrar_hebra_complementaria(H1N188)
-directH1N189<-mostrar_hebra_complementaria(H1N189)
-directH1N190<-mostrar_hebra_complementaria(H1N190)
-directH1N191<-mostrar_hebra_complementaria(H1N191)
-directH1N192<-mostrar_hebra_complementaria(H1N192)
 
 ```
 5. Crear una gráfica en R, utilizando funciones como plot() o barplot(), donde se muestren las
