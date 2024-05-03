@@ -1,18 +1,18 @@
 # Bruno Vázquez Espinoza - A00838521
 # Cyrce Danae Salinas Rojas - A01666121
-# 1. [3 pts] Crear un vector x con los datos 10, 7, 18, -11, 6, -34, 29
+1. [3 pts] Crear un vector x con los datos 10, 7, 18, -11, 6, -34, 29
 ```{r}
 x <- c(10, 7, 18, -11, 6, -34, 29)
 x
 ```
 
-# 2. [12 pts] Calcula estadísticas simples del vector x. Calcular su media, desviación estándar y varianza. Crear un vector llamado estadx donde se guarden los 3 estadísticos.
+2. [12 pts] Calcula estadísticas simples del vector x. Calcular su media, desviación estándar y varianza. Crear un vector llamado estadx donde se guarden los 3 estadísticos.
 ```{r}
 estadx <- c(mean(x), sd(x), var(x))
 estadx
 ```
 
-# 3. [9 pts] Escribe un programa R para crear una secuencia de números del 10 al 80 y encuentra la media de los números del 25 al 100 y la suma de los números del 50 al 95.
+3. [9 pts] Escribe un programa R para crear una secuencia de números del 10 al 80 y encuentra la media de los números del 25 al 100 y la suma de los números del 50 al 95.
 ```{r}
 seq <- 10:80
 do_stuff <- function(seq){
@@ -24,13 +24,13 @@ do_stuff <- function(seq){
 do_stuff(seq)
 ```
 
-# 4. [7 pts] Escribe un programa R para crear un vector que contenga 10 valores enteros aleatorios entre -150 y +500. Tip: Revisa la función sample().
+4. [7 pts] Escribe un programa R para crear un vector que contenga 10 valores enteros aleatorios entre -150 y +500. Tip: Revisa la función sample().
 ```{r}
 random_vector <- sample(-150:500, 10)
 random_vector
 ```
 
-# 5. [12 pts] Escribe un programa R para obtener los primeros 10 números de Fibonacci. Puedes usar el siguiente código base usando un for para terminar tu código: fufb <- numeric(10) fb[1] <- fb[2] <- 1 Nota: Considera que los primeros 2 números de Fibonacci son 1 y 1.
+5. [12 pts] Escribe un programa R para obtener los primeros 10 números de Fibonacci. Puedes usar el siguiente código base usando un for para terminar tu código: fufb <- numeric(10) fb[1] <- fb[2] <- 1 Nota: Considera que los primeros 2 números de Fibonacci son 1 y 1.
 ```{r}
 fib <- numeric(10) 
 fib[1] <- 1
@@ -42,7 +42,7 @@ for (i in 3:10) {
 
 fib
 ```
-# 6. [12 pts] Escribe un programa R para encontrar el valor máximo y mínimo de un vector dado sin utilizar las funciones base de max() y min(). Debes probar con los siguientes números: a. c(-1, 20, -3, 40, -5, 60) b. c(10, 20, 30, -40, -50, -60)
+6. [12 pts] Escribe un programa R para encontrar el valor máximo y mínimo de un vector dado sin utilizar las funciones base de max() y min(). Debes probar con los siguientes números: a. c(-1, 20, -3, 40, -5, 60) b. c(10, 20, 30, -40, -50, -60)
 ```{r}
 vector_a <- c(-1, 20, -3, 40, -5, 60)
 vector_b <- c(10, 20, 30, -40, -50, -60)
@@ -73,7 +73,7 @@ for (i in 2:length(vector_b)) {
 cat("valor maximo: " , max_value, "\nvalor minimo: ", min_value)
 ```
 
-# 7. [15 pts] Escribe una función de R llamada “multiplica” para multiplicar dos vectores de tipo entero y longitud n, de la misma longitud ambos. Probar con los siguientes valores: multiplica(c(30, 10), c(3,4)) # Salida: [1] 90 40
+7. [15 pts] Escribe una función de R llamada “multiplica” para multiplicar dos vectores de tipo entero y longitud n, de la misma longitud ambos. Probar con los siguientes valores: multiplica(c(30, 10), c(3,4)) # Salida: [1] 90 40
 ```{r}
 multiplica <- function(vector1, vector2) {
     if (length(vector1) != length(vector2)) {
@@ -88,7 +88,7 @@ cat(multiplica(c(30, 10), c(3, 4)))
 
 ```
 
-# 8. [15 pts] Escribe una función de R llamada “cuenta” para contar cuántas veces aparece un valor específico en un vector dado. Probar con los siguientes valores: cuenta(c(10, 2, 10, 7, 2, 7, 2),2) # Salida: [1] 3
+8. [15 pts] Escribe una función de R llamada “cuenta” para contar cuántas veces aparece un valor específico en un vector dado. Probar con los siguientes valores: cuenta(c(10, 2, 10, 7, 2, 7, 2),2) # Salida: [1] 3
 ```{r}
 cuenta <- function(vector, valor) {
     contador <- 0
@@ -105,7 +105,7 @@ cuenta <- function(vector, valor) {
 cuenta(c(10, 2, 10, 7, 2, 7, 2), 2)
 ```
 
-# 9. [15 pts] Escribe una función de R llamada “enésimo” para extraer cada enésimo elemento de un vector dado. Probar con los siguientes valores: enesimo(1:100, 5) # Salida: [1] 1 6 11 16 21 26 31 36 41 46 51 56 61 66 71 76 81 86 91 96
+9. [15 pts] Escribe una función de R llamada “enésimo” para extraer cada enésimo elemento de un vector dado. Probar con los siguientes valores: enesimo(1:100, 5) # Salida: [1] 1 6 11 16 21 26 31 36 41 46 51 56 61 66 71 76 81 86 91 96
 ```{r}
 enesimo <- function(vector, n) {
     resultado <- vector[seq(vector[1], length(vector), n)]
