@@ -9,7 +9,7 @@ library(DECIPHER)
 library(viridis)
 library(ggplot2)
 
-variants <- c("NC_005831","NC_028752","NC_006213","NC_006577","NC_038294","NC_009019","NC_009020","JX513256","KF963233","PP754087","PP294547","PP294548", "PP294549","PP294550","PP294551","PP294552","PP294553","PP294555","PP298099","PP301082")
+variants <- c("NC_005831","NC_028752","NC_006213","NC_006577","NC_038294","NC_009019","NC_009020","JX513256","KF963233","PP754087","NC_004718")
 variants_sequences <- read.GenBank(variants)
 attributes(variants_sequences)
 names(variants_sequences)
