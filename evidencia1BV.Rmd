@@ -1,0 +1,195 @@
+---
+title: "Evidencia 1"
+author: "Bruno Vázquez Espinoza - A00838521"
+date: "2024-04-26"
+output: pdf_document
+---
+
+#### Investiga, ¿Cuál fue la situación del COVID-19 a nivel mundial, en tu país, en tu estado de origen y en tu municipio, alcaldía o colonia entre 2020 y 2022?
+La pandemia de COVID-19 generó una crisis económica y desigualdad a nivel undial. Las economías emergentes y grupos desfavorecidos necesitaron más tiempo para recuperarse de las pérdidas de ingresos causadas por la pandemia. "La pobreza mundial aumentó, y las desigualdades internas y entre países se intensificaron". (Banco Mundial, 2022).
+
+En México, al 31 de enero de 2022, se reportaron 373,229,380 casos confirmados y 5,658,702 defunciones a nivel mundial. "La letalidad global fue del 1.5%" (gob.mx, 2022).
+
+#### ¿Cuál fue la primera variante del virus que se propagó a todo el mundo?
+La primera variante del virus que se propagó a nivel mundial fue la variante Alfa (B.1.1.7), detectada inicialmente en Reino Unido a fines de 2020. "Esta variante es entre un 43% y un 90% más contagiosa" (Ansede et al., 2021).
+
+#### ¿Cuáles son las otras variantes del virus que existen en otras regiones del mundo?
+1. Variante Alfa (B.1.1.7): Detectada inicialmente en Reino Unido a fines de 2020, esta variante es entre un 43% y un 90% más contagiosa1.
+2. Variante Beta (B.1.351): Identificada en Sudáfrica en diciembre de 2020, ha mostrado resistencia parcial a la neutralización por anticuerpos2.
+3. Variante Gamma (P.1): Originaria de Brasil, se ha propagado a nivel internacional y también se ha detectado en Estados Unidos3.
+4. Variante Delta: Surgió en la India a fines de 2020 y se ha extendido a más de 135 países. Es altamente contagiosa y motivo de preocupación global2.
+5. Variante Lambda: Identificada en Perú, se ha reportado en más de 40 países. Aunque su impacto aún se estudia, podría ser más transmisible2.
+6. Variante Épsilon (B.1.427/B.1.429): Surgió en California, Estados Unidos, y se caracteriza por su alta transmisibilidad3.
+7. Variante Zeta (P.2): Detectada en Brasil y otros países de América del Sur, ha generado preocupación debido a su capacidad para evadir la respuesta inmunitaria3.
+8. Variante Éta (B.1.525): Identificada en varios países africanos y en Europa, presenta mutaciones en la proteína de espiga3.
+9. Variante Teta (P.3): Reportada en Filipinas, ha demostrado resistencia a los anticuerpos neutralizantes3.
+10. Variante Íota (B.1.526): Emergió en Nueva York y ha sido objeto de estudio debido a sus mutaciones en la proteína de espiga3.
+
+#### Describe paso a paso cómo encontrarías la información de la variante del virus que está actualmente en tu país.
+Visitraía sitios web oficiales del Gobierno de México y la Secretaría de Salud. Estos sitios proporcionan datos actualizados sobre la situación epidemiológica, incluyendo información sobre variantes. Luego Buscaría los comunicados técnicos diarios emitidos por la Secretaría de Salud, siendo que estos documentos contienen detalles sobre las variantes detectadas en el país. También estaría atento a noticias de fuentes confiables, como medios de comunicación reconocidos y organizaciones de salud. Estas fuentes suelen informar sobre la presencia de nuevas variantes. Finalmente, mantendría un ojo en los estudios científicos y publicaciones que analizan las variantes en México. Las investigaciones académicas y los informes de la Organización Mundial de la Salud también son valiosos.
+
+#### Imagina que te encuentras en una situación similar a la de Li Wenliang, médico chino que intentó alertar sobre el brote de coronavirus en su país, pero fue detenido por las autoridades y obligado a retractarse, ¿qué hubieraas hecho tú en su caso si también vivieras en China? ¿Cambiaría tu respuesta si vivieras en México?
+En una situación similar a la del médico chino Li Wenliang, enfrentaría una encrucijada ética y personal. Si viviera en China y me encontrara con un brote emergente de un virus desconocido, como él lo hizo, consideraría lo siguiente:
+
+Como médico, mi deber primordial es la salud y el bienestar de mis pacientes. Alertar a mis colegas y al público sobre una posible amenaza para la salud sería mi prioridad, incluso si eso implicara enfrentar consecuencias personales. Evaluaría los riesgos y beneficios de divulgar la información. Saber que podría ser reprendido o castigado por las autoridades me haría reflexionar sobre las posibles consecuencias para mí y mi familia. Consideraría mis valores personales y éticos. ¿Estoy dispuesto a sacrificar mi seguridad y mi carrera por el bien común? ¿Qué impacto tendría mi silencio en la comunidad y en la propagación del virus? Buscaría apoyo entre mis colegas y otros profesionales de la salud. ¿Hay otros médicos dispuestos a respaldar mi advertencia? ¿Podríamos unirnos para presionar por una respuesta adecuada?
+
+Si viviera en México, donde existe una mayor libertad de expresión y menos represalias por parte de las autoridades, mi decisión podría ser diferente. Comunicaría abiertamente mis hallazgos a mis colegas, a las autoridades de salud y al público en general. La transparencia y la colaboración son esenciales para enfrentar una crisis sanitaria. Confío en que las instituciones de salud y los medios de comunicación en México permitirían una respuesta más efectiva y menos represalias. Buscaría apoyo en la comunidad médica y en organizaciones de salud. Reconocería mi responsabilidad como ciudadano para proteger a la sociedad. Mi deber sería informar y colaborar en la contención del brote. En última instancia, la decisión de alertar o no sobre un brote depende de la valentía individual, la ética profesional y el contexto específico. Li Wenliang, a pesar de las consecuencias, eligió alertar al mundo, y su legado como héroe y mártir perdura.
+
+### Ejercicios en R
+
+#### 1. Obtén 10 secuencias de las variantes de SARS-CoV-2 desde NCBI.
+```{r}
+install.packages("seqinr")
+library(seqinr)
+install.packages("Stringi")
+library(stringi)
+install.packages("Biostrings")
+library(Biostrings)
+ev1 <- unlist(read.fasta(file="srcEv/Ev1.fasta",  as.string = TRUE))
+ev2 <- unlist(read.fasta(file="srcEv/Ev2.fasta", as.string = TRUE))
+ev3 <- unlist(read.fasta(file="srcEv/Ev3.fasta", as.string = TRUE))
+ev4 <- unlist(read.fasta(file="srcEv/Ev4.fasta", as.string = TRUE))
+ev5 <- unlist(read.fasta(file="srcEv/Ev5.fasta", as.string = TRUE))
+ev6 <- unlist(read.fasta(file="srcEv/Ev6.fasta", as.string = TRUE))
+ev7 <- unlist(read.fasta(file="srcEv/Ev7.fasta", as.string = TRUE))
+ev8 <- unlist(read.fasta(file="srcEv/Ev8.fasta", as.string = TRUE))
+ev9 <- unlist(read.fasta(file="srcEv/Ev9.fasta", as.string = TRUE))
+ev10 <- unlist(read.fasta(file="srcEv/Ev10.fasta", as.string = TRUE))
+```
+
+#### 2. Calcula la longitud de las secuencias, %GC y las secuencias contrasentido de cada variante.
+```{r}
+# Composición de las secuencias
+calculate_nucleotide_composition <- function(sequence) {
+  dna_sequence <- DNAString(sequence)
+  nucleotide_count <- letterFrequency(dna_sequence, letters=c("A", "G", "T", "C"))
+  nucleotide_percentage <- nucleotide_count / sum(nucleotide_count) * 100
+  result <- nucleotide_percentage
+  return(result)
+}
+
+sequences <- list(Ev1 = ev1, Ev2 = ev2, Ev3 = ev3, Ev4 = ev4, Ev5 = ev5, Ev6 = ev6, Ev7 = ev7, Ev8 = ev8, Ev9 = ev9, Ev10 = ev10)
+nucleotide_compositions <- lapply(sequences, calculate_nucleotide_composition)
+
+aInEv1 <- nucleotide_compositions[["Ev1"]][["A"]]
+gInEv1 <- nucleotide_compositions[["Ev1"]][["G"]]
+tInEv1 <- nucleotide_compositions[["Ev1"]][["T"]]
+cInEv1 <- nucleotide_compositions[["Ev1"]][["C"]]
+
+aInEv2 <- nucleotide_compositions[["Ev2"]][["A"]]
+gInEv2 <- nucleotide_compositions[["Ev2"]][["G"]]
+tInEv2 <- nucleotide_compositions[["Ev2"]][["T"]]
+cInEv2 <- nucleotide_compositions[["Ev2"]][["C"]]
+
+aInEv3 <- nucleotide_compositions[["Ev3"]][["A"]]
+gInEv3 <- nucleotide_compositions[["Ev3"]][["G"]]
+tInEv3 <- nucleotide_compositions[["Ev3"]][["T"]]
+cInEv3 <- nucleotide_compositions[["Ev3"]][["C"]]
+
+aInEv4 <- nucleotide_compositions[["Ev4"]][["A"]]
+gInEv4 <- nucleotide_compositions[["Ev4"]][["G"]]
+tInEv4 <- nucleotide_compositions[["Ev4"]][["T"]]
+cInEv4 <- nucleotide_compositions[["Ev4"]][["C"]]
+
+aInEv5 <- nucleotide_compositions[["Ev5"]][["A"]]
+gInEv5 <- nucleotide_compositions[["Ev5"]][["G"]]
+tInEv5 <- nucleotide_compositions[["Ev5"]][["T"]]
+cInEv5 <- nucleotide_compositions[["Ev5"]][["C"]]
+
+aInEv6 <- nucleotide_compositions[["Ev6"]][["A"]]
+gInEv6 <- nucleotide_compositions[["Ev6"]][["G"]]
+tInEv6 <- nucleotide_compositions[["Ev6"]][["T"]]
+cInEv6 <- nucleotide_compositions[["Ev6"]][["C"]]
+
+aInEv7 <- nucleotide_compositions[["Ev7"]][["A"]]
+gInEv7 <- nucleotide_compositions[["Ev7"]][["G"]]
+tInEv7 <- nucleotide_compositions[["Ev7"]][["T"]]
+cInEv7 <- nucleotide_compositions[["Ev7"]][["C"]]
+
+aInEv8 <- nucleotide_compositions[["Ev8"]][["A"]]
+gInEv8 <- nucleotide_compositions[["Ev8"]][["G"]]
+tInEv8 <- nucleotide_compositions[["Ev8"]][["T"]]
+cInEv8 <- nucleotide_compositions[["Ev8"]][["C"]]
+
+aInEv9 <- nucleotide_compositions[["Ev9"]][["A"]]
+gInEv9 <- nucleotide_compositions[["Ev9"]][["G"]]
+tInEv9 <- nucleotide_compositions[["Ev9"]][["T"]]
+cInEv9 <- nucleotide_compositions[["Ev9"]][["C"]]
+
+aInEv10 <- nucleotide_compositions[["Ev10"]][["A"]]
+gInEv10 <- nucleotide_compositions[["Ev10"]][["G"]]
+tInEv10 <- nucleotide_compositions[["Ev10"]][["T"]]
+cInEv10 <- nucleotide_compositions[["Ev10"]][["C"]]
+
+# Longitud de las secuencias
+sizeEv1 <- stri_length(ev1)
+sizeEv2 <- stri_length(ev2)
+sizeEv3 <- stri_length(ev3)
+sizeEv4 <- stri_length(ev4)
+sizeEv5 <- stri_length(ev5)
+sizeEv6 <- stri_length(ev6)
+sizeEv7 <- stri_length(ev7)
+sizeEv8 <- stri_length(ev8)
+sizeEv9 <- stri_length(ev9)
+sizeEv10 <- stri_length(ev10)
+
+# %GC de las secuencias
+calculate_gc_content <- function(sequence) {
+  dna_sequence <- DNAString(sequence)
+  gc_count <- letterFrequency(dna_sequence, letters = c("G", "C"))
+  gc_percentage <- sum(gc_count) / sum(letterFrequency(dna_sequence, letters = c("G", "C","T","A"))) * 100
+  return(gc_percentage)
+}
+
+# Ahora puedes calcular 'gc_content'
+gc_content <- lapply(sequences, calculate_gc_content)
+
+gcInEv1 <- gc_content[["Ev1"]]
+gcInEv2 <- gc_content[["Ev2"]]
+gcInEv3 <- gc_content[["Ev3"]]
+gcInEv4 <- gc_content[["Ev4"]]
+gcInEv5 <- gc_content[["Ev5"]]
+gcInEv6 <- gc_content[["Ev6"]]
+gcInEv7 <- gc_content[["Ev7"]]
+gcInEv8 <- gc_content[["Ev8"]]
+gcInEv9 <- gc_content[["Ev9"]]
+gcInEv10 <- gc_content[["Ev10"]]
+
+# Secuencias contrasentido
+revEv1 <- reverse(ev1)
+revEv2 <- reverse(ev2)
+revEv3 <- reverse(ev3)
+revEv4 <- reverse(ev4)
+revEv5 <- reverse(ev5)
+revEv6 <- reverse(ev6)
+revEv7 <- reverse(ev7)
+revEv8 <- reverse(ev8)
+revEv9 <- reverse(ev9)
+revEv10 <- reverse(ev10)
+```
+
+#### 3. Crea una gráfica donde compares las bases de ADN que componen a cada una de las variantes del virus.
+##### %GC
+En estas dos gráficas se comparan las bases de ADN que componen a cada una de las variantes del virus, con respecto al %GC. En la primera gráfica se comparan las bases de ADN de las variantes 1 a 5, mientras que en la segunda gráfica se comparan las bases de ADN de las variantes 6 a 10.
+```{r, echo=FALSE}
+# Gráfica de las bases de ADN
+pie(c(gcInEv1, gcInEv2, gcInEv3, gcInEv4, gcInEv5), labels = c("Ev1", "Ev2", "Ev3", "Ev4", "Ev5"), main="%GC 1-5", col=c("red", "green", "blue", "yellow", "orange"))
+```
+```{r, echo=FALSE}
+pie(c(gcInEv6, gcInEv7, gcInEv8, gcInEv9, gcInEv10), labels = c("Ev6", "Ev7", "Ev8", "Ev9","Ev10"), main="%GC 6-10", col=c("red", "green", "blue", "yellow", "orange"))
+```
+
+##### Longitud
+En estas gráficas se comparan la longitud de ADN de las secuencias de las variantes del virus. En la primera gráfica se comparan las longitudes de las secuencias de las variantes 1 a 5, mientras que en la segunda gráfica se comparan las longitudes de las secuencias de las variantes 6 a 10.
+```{r, echo=FALSE}
+pie(c(sizeEv1, sizeEv2, sizeEv3, sizeEv4, sizeEv5), labels = c("Ev1", "Ev2", "Ev3", "Ev4", "Ev5"), main="Longitud 1-5", col=c("red", "green", "blue", "yellow", "orange"))
+```
+```{r, echo=FALSE}
+pie(c(sizeEv6, sizeEv7, sizeEv8, sizeEv9, sizeEv10), labels = c("Ev6", "Ev7", "Ev8", "Ev9","Ev10"), main="Longitud 6-10", col=c("red", "green", "blue", "yellow", "orange"))
+```
+
+### Referencias
+- Mundial, B. (2022). Capítulo 1. Los impactos económicos de la pandemia y los nuevos riesgos para la recuperación. En World Bank. https://www.bancomundial.org/es/publication/wdr2022/brief/chapter-1-introduction-the-economic-impacts-of-the-covid-19-crisis
+- El portal único del gobierno. | gob.mx. (2022). https://www.gob.mx/cms/uploads/attachment/file/700380
+- Ansede, M., Ansede, M., & Ansede, M. (2021, 4 marzo). La variante del coronavirus que se propaga por el mundo es un 58% más letal, según un equipo británico. El País. https://elpais.com/ciencia/2021-03-04/la-variante-del-coronavirus-que-se-propaga-por-el-mundo-es-un-58-mas-letal-segun-un-equipo-britanico.html
+- COVID-19 Map - Johns Hopkins Coronavirus Resource Center. (s. f.). Johns Hopkins Coronavirus Resource Center. https://coronavirus.jhu.edu/map.html
