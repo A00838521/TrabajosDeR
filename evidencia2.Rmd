@@ -9,13 +9,63 @@ library(DECIPHER)
 library(viridis)
 library(ggplot2)
 
-variants <- c("NC_005831","NC_028752","NC_006213","NC_006577","NC_038294","NC_009019","NC_009020","JX513256","KF963233","PP754087","NC_004718")
+variants <- c("PP756562","PP106467","OR122625","PP357705","OR073431","OZ025408","PP754143","OR772942","PP747676","OR242187","OQ676999","OP303172","PP107860","OU327282","MZ570430","OR775659","OL629473","ON651682","PP498857","BS010624")
+labels <- c("EU", "India", "Brasil", "Francia", "Turquía", "UK", "Rusia", "Italia", "Alemania", "España", "Argentina","Colombia","México","Polonia","Indonesia","Sudáfrica","Filipinas","Malasia","Perú","Japón")
+
 variants_sequences <- read.GenBank(variants)
+names(variants_sequences) <- labels
+
 attributes(variants_sequences)
 names(variants_sequences)
 attr(variants_sequences, "description")
+
+write.dna(variants_sequences,  file ="variants_seqs.fasta", format = "fasta", append =
+FALSE, nbcol = 6, colsep = " ", colw = 10)
 ```
 
 #### Longitud de la secuencia
 ```{r}
+sequences <- readDNAStringSet("variants_seqs.fasta", format = "fasta")
+sizeEU <- nchar(sequences[1])
+sizeIndia <- nchar(sequences[2])
+sizeBrasil <- nchar(sequences[3])
+sizeFrancia <- nchar(sequences[4])
+sizeTurquia <- nchar(sequences[5])
+sizeUK <- nchar(sequences[6])
+sizeRusia <- nchar(sequences[7])
+sizeItalia <- nchar(sequences[8])
+sizeAlemania <- nchar(sequences[9])
+sizeEspana <- nchar(sequences[10])
+sizeArgentina <- nchar(sequences[11])
+sizeColombia <- nchar(sequences[12])
+sizeMexico <- nchar(sequences[13])
+sizePolonia <- nchar(sequences[14])
+sizeIndonesia <- nchar(sequences[15])
+sizeSudafrica <- nchar(sequences[16])
+sizeFilipinas <- nchar(sequences[17])
+sizeMalasia <- nchar(sequences[18])
+sizePeru <- nchar(sequences[19])
+sizeJapon <- nchar(sequences[20])
+```
+
+#### Gráfica de número de ADN que componen todas las variantes del virus
+```{r}
+sizes <- c(sizeEU, sizeIndia, sizeBrasil, sizeFrancia, sizeTurquia, sizeUK, sizeRusia, sizeItalia, sizeAlemania, sizeEspana, sizeArgentina, sizeColombia, sizeMexico, sizePolonia, sizeIndonesia, sizeSudafrica, sizeFilipinas, sizeMalasia, sizePeru, sizeJapon)
+pie(sizes, labels= c("EU", "India", "Brasil", "Francia", "Turquía", "UK", "Rusia", "Italia", "Alemania", "España", "Argentina","Colombia","México","Polonia","Indonesia","Sudáfrica","Filipinas","Malasia","Perú","Japón"), main="Número de ADN que componen las variantes del virus", col=viridis(20))
+```
+
+#### Arbol Filogenético
+```{r}
+variantes_seq_no_alineadas <- readDNAStringSet("variants_seqs.fasta", format = "fasta")
+variantes_seq_no_alineadas <- OrientNucleotides(variantes_seq_no_alineadas)
+variantes_align_seqs <- AlignSeqs(variantes_seq_no_alineadas)
+writeXStringSet(variantes_align_seqs, file = "variantes_align_seq.fasta")
+variantes_aligned <- read.alignment("variantes_align_seq.fasta", format = "fasta")
+matriz_distanciaV <- dist.alignment(variantes_aligned, matrix = "similarity")
+varian_filogenetico <- njs(matriz_distanciaV)
+varian_plot_filogenetico <- ladderize(varian_filogenetico)
+```
+
+```{r}
+ggtree(varian_plot_filogenetico, branch.length='none', layout='circular') + geom_tiplab(text=element_text(size=3))
 ```
