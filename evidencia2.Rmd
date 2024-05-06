@@ -48,11 +48,12 @@ sizePeru <- nchar(sequences[19])
 sizeJapon <- nchar(sequences[20])
 ```
 
-#### Gráfica de número de ADN que componen todas las variantes del virus
+#### Gráfica de tamaños de ADN que componen todas las variantes del virus
 ```{r}
 sizes <- c(sizeEU, sizeIndia, sizeBrasil, sizeFrancia, sizeTurquia, sizeUK, sizeRusia, sizeItalia, sizeAlemania, sizeEspana, sizeArgentina, sizeColombia, sizeMexico, sizePolonia, sizeIndonesia, sizeSudafrica, sizeFilipinas, sizeMalasia, sizePeru, sizeJapon)
 pie(sizes, labels= c("EU", "India", "Brasil", "Francia", "Turquía", "UK", "Rusia", "Italia", "Alemania", "España", "Argentina","Colombia","México","Polonia","Indonesia","Sudáfrica","Filipinas","Malasia","Perú","Japón"), main="Número de ADN que componen las variantes del virus", col=viridis(20))
 ```
+Este tipo de visualización destaca la importancia de la secuenciación genómica y la vigilancia para entender mejor la dinámica de la pandemia y responder de manera efectiva, especialmente en áreas con alta transmisión del virus. Es díficil saber a simple vista que país tiene la mayor cantidad de ADN que componen las variantes del virus, por lo que calculando el tamaño máximo de ADN que componen las variantes del virus obtenemos que el país con mayor cantidad de ADN es: *Polonia*.
 
 #### Arbol Filogenético
 ```{r}
@@ -69,3 +70,9 @@ varian_plot_filogenetico <- ladderize(varian_filogenetico)
 ```{r}
 ggtree(varian_plot_filogenetico, branch.length='none', layout='circular') + geom_tiplab(text=element_text(size=3))
 ```
+
+En este caso, el árbol filogenético muestra que las variantes del virus están relacionadas entre sí, lo que sugiere que comparten un ancestro común. Además, las ramas más largas en el árbol filogenético pueden indicar una rápida evolución o mutación en ciertas regiones, lo que sugiere que el virus ha estado circulando allí durante más tiempo o que ha experimentado presiones selectivas únicas.
+
+#### Conclusiones
+
+Examinamos si existían diferencias notables en la longitud de las secuencias de ADN del virus entre diferentes países, lo cual podría haber indicado variabilidad en las variantes presentes si se observaban variaciones significativas en las bases de ADN. Aunque las secuencias de ADN del virus no estaban correlacionadas directamente con las características de la población humana, diferencias en la propagación local y las políticas de control de cada país podrían haberse reflejado en las secuencias. No obstante, no anticipamos encontrar variaciones en las secuencias de ADN atribuibles directamente a factores genéticos humanos específicos de cada región.
